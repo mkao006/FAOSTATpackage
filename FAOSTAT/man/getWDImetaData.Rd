@@ -1,0 +1,28 @@
+\name{getWDImetaData}
+\alias{getWDImetaData}
+\title{World Bank Indicator Metadata}
+\usage{
+  getWDImetaData(indicator, printMetaData = FALSE,
+    saveMetaData = FALSE, saveName = "worldBankMetaData")
+}
+\arguments{
+  \item{indicator}{The World Bank official indicator name.}
+
+  \item{printMetaData}{logical, print out the meta data
+  information}
+
+  \item{saveMetaData}{logical, whether meta data should be
+  saved as a local csv file.}
+
+  \item{saveName}{The name of the file for the meta data to
+  save to.}
+}
+\description{
+  A function to extract the definition and the meta data
+  from the World Bank API
+}
+\examples{
+pop.df = getWDImetaData("SP.POP.TOTL",
+                        printMetaData = TRUE, saveMetaData = TRUE)
+}
+

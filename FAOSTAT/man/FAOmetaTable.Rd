@@ -1,0 +1,11 @@
+\docType{data}
+\name{FAOmetaTable}
+\alias{FAOmetaTable}
+\title{The search tree for FAOSTAT3}
+\description{
+  A table containing the relationship between the domain,
+  element, item codes for downloading data from the FAOSTAT
+  API.
+}
+\keyword{datasets}
+

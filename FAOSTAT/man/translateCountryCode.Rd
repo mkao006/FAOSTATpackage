@@ -1,0 +1,21 @@
+\name{translateCountryCode}
+\alias{translateCountryCode}
+\title{A function to translate between different country coding systems}
+\usage{
+  translateCountryCode(data, from, to, oldCode)
+}
+\arguments{
+  \item{data}{The data frame}
+
+  \item{from}{The name of the old coding system}
+
+  \item{to}{The name of the new coding system}
+
+  \item{oldCode}{The column name of the old country coding
+  scheme}
+}
+\description{
+  The function translate any country code scheme to another
+  if both are in the FAOcountryProfile
+}
+

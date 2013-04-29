@@ -1,0 +1,60 @@
+Package: FAOSTAT
+Type: Package
+Title: A complementary package to the FAOSTAT database and the Statistical
+    Yearbook of the Food and Agricultural Organization of the United Nations.
+Version: 1.2
+Date: 2013-01-31
+Authors@R: c(person("Micheal. C. J.", "Kao", role = c("aut", "cre"), email =
+    "michael.kao@fao.org"), person("Markus", "Gesmann", rol = "ctb", comment =
+    "Author of getWDI"))
+Author: Michael C. J. Kao <michael.kao@fao.org>
+Maintainer: Michael C. J. Kao <michael.kao@fao.org>
+Description: The package hosts a list of functions to download, manipulate,
+    construct and aggregate agricultural statistics provided by the FAOSTAT
+    database of the Food and Agricultural Organization of the United Nations.
+License: GPL (>= 2)
+Depends:
+    RJSONIO (>= 0.96-0),
+    plyr (>= 1.7.1),
+    reshape2 (>= 1.2.1),
+    data.table (>= 1.8.2),
+    MASS (>= 7.3-22),
+    classInt (>= 0.1-19),
+    ggplot2 (>= 0.9.3),
+    labeling (>= 0.1),
+    scales (>= 0.2.3)
+LazyData: yes
+ZipData: no
+Collate:
+    'aggCountry.R'
+    'aggRegion.R'
+    'chConstruct.R'
+    'chgr.R'
+    'CHMT.R'
+    'constructSYB.R'
+    'dataDensity.R'
+    'ebind.R'
+    'FAOcheck.R'
+    'FAOcountryProfile.R'
+    'FAOmetaTable.R'
+    'FAOregionProfile.R'
+    'FAOsearch.R'
+    'FAOSTAT-package.R'
+    'fillCountryCode.R'
+    'geogr.R'
+    'getFAO.R'
+    'getFAOtoSYB.R'
+    'getWDImetaData.R'
+    'getWDI.R'
+    'getWDItoSYB.R'
+    'grConstruct.R'
+    'indConstruct.R'
+    'lsgr.R'
+    'mergeSYB.R'
+    'overlap.R'
+    'printLab.R'
+    'shConstruct.R'
+    'sparsityHeatMap.R'
+    'sparsity.R'
+    'translateCountryCode.R'
+    'tsPanel.R'

@@ -1,0 +1,20 @@
+\name{fillCountryCode}
+\alias{fillCountryCode}
+\title{A function to get country code when not available in data.}
+\usage{
+  fillCountryCode(country, data, outCode = "FAOST_CODE")
+}
+\arguments{
+  \item{country}{The column name of the data which contains
+  the country name}
+
+  \item{data}{The data frame to be matched}
+
+  \item{outCode}{The output country code system, defaulted
+  to FAO standard.}
+}
+\description{
+  This function can be useful when a dataset provided does
+  not have a country code available.
+}
+

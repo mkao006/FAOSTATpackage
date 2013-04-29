@@ -1,0 +1,33 @@
+\name{chgr}
+\alias{chgr}
+\title{Absolute change between the year}
+\usage{
+  chgr(x, n = 1)
+}
+\arguments{
+  \item{x}{The time series for the change to be
+  calculated.}
+
+  \item{n}{The period for the growth to be calculated
+  over.}
+}
+\value{
+  The n-period change of the time series.
+}
+\description{
+  Function for generating the n-period absolute change
+}
+\details{
+  In order to ensure the change calculated is reliable, the
+  following rule are applied. \enumerate{ \item 50\% of the
+  data must be present.  \item The length of the time
+  series must be greater than n } Otherwise the growth will
+  not be computed.
+}
+\examples{
+test.ts = abs(rnorm(100))
+chgr(test.ts, 1)
+chgr(test.ts, 3)
+chgr(test.ts, 10)
+}
+

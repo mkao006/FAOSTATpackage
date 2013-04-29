@@ -1,0 +1,16 @@
+\docType{package}
+\name{FAOSTAT-package}
+\alias{FAOSTAT-package}
+\title{A complementary package to the FAOSTAT database and the
+Statistical Yearbook of the Food and Agricultural Organization of
+the United Nations.}
+\description{
+  A complementary package to the FAOSTAT database and the
+  Statistical Yearbook of the Food and Agricultural
+  Organization of the United Nations.
+}
+\author{
+  Michael. C. J. Kao \email{michael.kao@fao.org}
+}
+\keyword{package}
+

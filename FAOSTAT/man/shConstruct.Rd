@@ -1,0 +1,43 @@
+\name{shConstruct}
+\alias{shConstruct}
+\title{Construct share variable}
+\usage{
+  shConstruct(data, totVar, shareVar, newVarName = NA)
+}
+\arguments{
+  \item{data}{The data frame containing both the share
+  variable and the aggregated variable}
+
+  \item{totVar}{The aggregated variable.}
+
+  \item{shareVar}{The subset of the aggregated variable
+  which to be divided by.}
+
+  \item{newVarName}{The name assigned to the new variable,
+  if missing then .SC/.SH/.GR will be appended depending on
+  the type of construction}
+}
+\value{
+  A data frame with the new constructed variable
+}
+\description{
+  A function for constructing the share of a variable of an
+  aggregated variable.
+}
+\details{
+  The share of a variable can be share of the World (if
+  additional variable were not supplied) or share of
+  another variable (per Capita if population was supplied).
+}
+\examples{
+## Total variables provided, scale by totVar
+test.df = data.frame(FAOST_CODE = 1, Year = 1990:1994, a = 1:5, b = 1:5)
+shConstruct(data = test.df, totVar = "a", shareVar = "b")
+
+## Total variables not provided, scale by world aggregate.
+test.df2 = data.frame(FAOST_CODE = rep(c(1, 5000), each = 5),
+                       Year = rep(1990:1994, 2),
+                       a = rep(1:5, 2), b = rep(1:5, 2))
+shConstruct(data = test.df2, totVar = NA, shareVar = "b")
+}
+

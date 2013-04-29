@@ -1,0 +1,44 @@
+\name{getWDI}
+\alias{getWDI}
+\title{Access to World Bank WDI API}
+\usage{
+  getWDI(indicator = "SP.POP.TOTL", name = NULL,
+    startDate = 1960, endDate = format(Sys.Date(), "\%Y"),
+    printURL = FALSE, outputFormat = "wide")
+}
+\arguments{
+  \item{indicator}{The World Bank official indicator name.}
+
+  \item{name}{The new name to be used in the column.}
+
+  \item{startDate}{The start date for the data to begin}
+
+  \item{endDate}{The end date.}
+
+  \item{printURL}{Whether the url link for the data should
+  be printed}
+
+  \item{outputFormat}{The format of the data, can be 'long'
+  or 'wide'.}
+}
+\value{
+  A data frame containing the desired World Bank Indicator
+}
+\description{
+  A function to extract data from the World Bank API
+}
+\details{
+  Please refer to \url{http://data.worldbank.org/node/18}
+  for any difference between the country code system.
+  Further details on World Bank classification and
+  methodology are available at
+  \url{http://data.worldbank.org/}.
+}
+\examples{
+pop.df = getWDI()
+}
+\seealso{
+  \code{\link{getFAO}}, \code{\link{getWDItoSYB}},
+  \code{\link{getFAOtoSYB}}
+}
+

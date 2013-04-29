@@ -1,0 +1,22 @@
+\name{ebind}
+\alias{ebind}
+\title{A function to bind the different entity level.}
+\usage{
+  ebind(territory = NULL, subregion = NULL, region = NULL,
+    world = NULL)
+}
+\arguments{
+  \item{territory}{The data frame which contains the
+  territory/country level data}
+
+  \item{subregion}{The sub aggregated region aggregate}
+
+  \item{region}{The macro region aggregate}
+
+  \item{world}{The world aggregate}
+}
+\description{
+  A data frame is chosen over the list is solely for the
+  purpose of transition to ggplot2.
+}
+
