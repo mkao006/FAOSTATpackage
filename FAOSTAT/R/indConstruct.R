@@ -38,3 +38,5 @@ indConstruct = function(data, origVar, newVarName = NA, baseYear = 2000){
                                 newVarName)
   ind.df
 }
+
+utils::globalVariables(names = "FAOST_CODE")

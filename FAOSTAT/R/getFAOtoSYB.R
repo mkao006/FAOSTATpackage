@@ -125,3 +125,4 @@ getFAOtoSYB = function(name = NULL, domainCode = "RL",
     list(entity = entity.df, aggregates = region.df, results = results)
 }
 
+utils::globalVariables(names = "FAOST_CODE")

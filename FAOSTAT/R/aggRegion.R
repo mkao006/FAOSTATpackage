@@ -63,7 +63,6 @@
 ##                with zero.
 
 
-
 aggRegion = function(aggVar, weightVar = rep(NA, length(aggVar)),
     year = "Year", data,
     relationDF = FAOcountryProfile[, c("FAOST_CODE", "UNSD_MACRO_REG_CODE")],
@@ -178,3 +177,5 @@ aggRegion = function(aggVar, weightVar = rep(NA, length(aggVar)),
     }
     data.frame(final)
 }
+
+utils::globalVariables(names = c("nc", "Year", "V1"))

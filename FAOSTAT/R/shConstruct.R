@@ -63,3 +63,5 @@ shConstruct = function(data, totVar, shareVar, newVarName = NA){
   ## merge(data, shVar.df, by = c("FAOST_CODE", "Year"))
   ## data.frame(data[c("FAOST_CODE", "Year")], shVar)
 }
+
+utils::globalVariables(names = "FAOST_CODE")
