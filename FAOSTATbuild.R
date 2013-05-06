@@ -4,6 +4,7 @@
 
 library(roxygen2)
 library(RJSONIO)
+library(utils)
 
 ## FAOcountryProfile data
 ## ---------------------------------------------------------------------
@@ -150,7 +151,7 @@ roxygenize("FAOSTAT")
 
 ## Include vignette
 dir.create("./FAOSTAT/inst/doc/")
-file.copy(from = "../Documentation/FAOSTAT/FAOSTAT.pdf",
+file.copy(from = "./Documentation/FAOSTAT.pdf",
           to = "./FAOSTAT/inst/doc/", overwrite = TRUE)
 
 ## Create the vignette hack from (http://yihui.name/knitr/demo/vignette/)
@@ -160,12 +161,5 @@ cat("%\\VignetteIndexEntry{General Manual}\n\\documentclass{article}\n\\begin{do
 ## Build and check the package
 system("R CMD INSTALL --build FAOSTAT")
 system("R CMD build FAOSTAT")
-system("R CMD check FAOSTAT")
-
-## NOTE(Michael): The following check is only required before
-##                submitting. Due to the use of the data.table and
-##                plyr package, the globalVariables() function should
-##                be used to avoid the "visible binding" issue.
-##
-## system("Rcmd check --as-cran FAOSTAT")
+system("R CMD check --as-cran FAOSTAT")
 
