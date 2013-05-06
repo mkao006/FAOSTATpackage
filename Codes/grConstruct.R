@@ -60,3 +60,5 @@ grConstruct = function(data, origVar, newVarName = NA,
                                newVarName)
   gr.df
 }
+
+utils::globalVariables(names = "FAOST_CODE")
