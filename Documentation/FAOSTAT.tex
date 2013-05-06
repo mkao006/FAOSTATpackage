@@ -1,0 +1,644 @@
+\documentclass[nojss]{jss}\usepackage{graphicx, color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\definecolor{fgcolor}{rgb}{0.2, 0.2, 0.2}
+\newcommand{\hlnumber}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlfunctioncall}[1]{\textcolor[rgb]{0.501960784313725,0,0.329411764705882}{\textbf{#1}}}%
+\newcommand{\hlstring}[1]{\textcolor[rgb]{0.6,0.6,1}{#1}}%
+\newcommand{\hlkeyword}[1]{\textcolor[rgb]{0,0,0}{\textbf{#1}}}%
+\newcommand{\hlargument}[1]{\textcolor[rgb]{0.690196078431373,0.250980392156863,0.0196078431372549}{#1}}%
+\newcommand{\hlcomment}[1]{\textcolor[rgb]{0.180392156862745,0.6,0.341176470588235}{#1}}%
+\newcommand{\hlroxygencomment}[1]{\textcolor[rgb]{0.43921568627451,0.47843137254902,0.701960784313725}{#1}}%
+\newcommand{\hlformalargs}[1]{\textcolor[rgb]{0.690196078431373,0.250980392156863,0.0196078431372549}{#1}}%
+\newcommand{\hleqformalargs}[1]{\textcolor[rgb]{0.690196078431373,0.250980392156863,0.0196078431372549}{#1}}%
+\newcommand{\hlassignement}[1]{\textcolor[rgb]{0,0,0}{\textbf{#1}}}%
+\newcommand{\hlpackage}[1]{\textcolor[rgb]{0.588235294117647,0.709803921568627,0.145098039215686}{#1}}%
+\newcommand{\hlslot}[1]{\textit{#1}}%
+\newcommand{\hlsymbol}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlprompt}[1]{\textcolor[rgb]{0.2,0.2,0.2}{#1}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{url}
+\usepackage[sc]{mathpazo}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\usepackage{breakurl}
+\usepackage{draftwatermark}
+
+
+%% almost as usual
+\author{Michael. C. J. Kao\\ Food and Agriculture Organization \\of
+  the United Nations}
+\title{A Package for Transparent and Reproducible\\ Statistics: Package \pkg{FAOSTAT}}
+
+
+
+%% for pretty printing and a nice hypersummary also set:
+\Plainauthor{Michael. C. J. Kao} %% comma-separated
+\Plaintitle{A Transparent and Reproducible Package for Official
+  Statistics: Package FAOSTAT} %% without formatting
+\Shorttitle{\pkg{FAOSTAT}: A Transparent and Reproducible Package for Official
+  Statistics} %% a short title (if necessary)
+
+%% an abstract and keywords
+\Abstract{
+
+  The aim of this document is to introduce the FAOSTAT package
+  developed by the Food and Agricultural Organization of the United
+  Nations which serves as an open gate way to an extensive library of
+  agricultural statistics on FAOSTAT and the core back bone for the
+  production of the Statistcal Yearbook.
+
+  Dealing with official statistics is a very tedious and complex task
+  which is usually overlooked. This paper will address some of the
+  common problems we have encountered and at the same time demonstrate
+  how some of these obstacles can be alleviated by the package and
+  provide a framework for reproducible statistics.
+
+  %% Reproducible research are common in academic.
+
+  The use of open source software \proglang{R} and \LaTeX{} brings
+  tremendous amount of benefits, speeding up the production process
+  and open up the data and methodology to the general public.
+
+  In this small paper we will illustrate the production process and
+  demonstrate how the use of the package can increase transparency and
+  sustainability. We will also point out details along the process
+  which are typically overseen by analysts and researchers.
+
+}
+\Keywords{R, Official Statistics}
+\Plainkeywords{R, Official Statistics} %% without formatting
+%% at least one keyword must be supplied
+
+%% publication information
+%% NOTE: Typically, this can be left commented and will be filled out by the technical editor
+%% \Volume{50}
+%% \Issue{9}
+%% \Month{June}
+%% \Year{2012}
+%% \Submitdate{2012-06-04}
+%% \Acceptdate{2012-06-04}
+
+%% The address of (at least) one author should be given
+%% in the following format:
+\Address{
+  Michael C.J. Kao\\
+  Economics and Social Statistics Division\\
+  Economic and Social Development Department\\
+  United Nations Food and Agriculture Organization\\
+  Viale delle Terme di Caracalla 00153 Rome, Italy\\
+  E-mail: \email{michael.kao@fao.org}
+  % URL: \url{http://eeecon.uibk.ac.at/~zeileis/}
+}
+%% It is also possible to add a telephone and fax number
+%% before the e-mail in the following format:
+%% Telephone: +43/512/507-7103
+%% Fax: +43/512/507-2851
+
+
+
+%% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%% include your article here, just as usual
+%% Note that you should use the \pkg{}, \proglang{} and \code{} commands.
+
+
+
+\section{Introduction}
+The idea of utilizing \proglang{R} and \LaTeX{} for the production of
+the FAO statistical yearbook was initiated by Adam Prakash and Mattieu
+Stigler in the ESS division of the Food and Agricultural Organization
+of the United Nations. The initiative was taken in order to replace
+the labour intensive work with a streamline system which integrates
+data extraction, manipulation, statistical graphics and tables into
+one single comprehensive system.
+
+This paper will demonstrate how the FAOSTAT package is used to
+download, and process data under the framework of the FAO Statistical
+Yearbook. The goal is to provide a framework for users to access, and
+reproduce the statistics released in the publication and also easy the
+pain for dealing with official statistics from various sources.  By
+providing the data and methodology to the public, we hope to receive
+feedbacks from domain experts and professionals in order to improve
+the system and at the same time to promote research and analysis in
+the field which will support for better policies and decision.
+
+
+First, we will demonstration the usage of the \code{getFAOtoSYB} and
+\code{getWDItoSYB} functions to download data from the FAO FAOSTAT and
+the World Bank WDI API. This is then followed by the demonstration of
+the \code{translateCountryCode} and \code{mergeSYB} function to merge
+data from various sources and address some of the common
+complications. Finally we provide examples of how the aggregates can
+be computed using the function\code{aggRegion} for different
+composition.
+
+\section{Motivation}
+Compiling hundreds of statistics from different sources under
+traditional approach such as Excel can be very labour intensive and
+error proned. Furthermore, the knowledge and the experience is almost
+impossible to sustain in the long run resulting in inconsistent
+results and treatments over time. As a result, the ESS took the
+initiative to use \proglang{R} and \proglang{\LaTeX} as the new
+architecture for a sustainable and cost-effective way to produce the
+statistical yearbook. This approach increases the sustainability and
+coherence of the publication as all the data manipulation, and
+exceptions are recorded in the source code.
+
+In addition to these working motives, the use of R enables the data
+generated by the publication to be reproducible and readily accessible
+to researchers and analysts around the world. This open-data philosophy
+has proven to create tremendous amount of benefits for both the user
+and the data provider. We hope that this initiative will increase the
+visibility of agricultural related statistics and spark more research
+and analysis which the organization and its beneficiaries will gain.
+
+%% After a little more than a year, the architecture has not only become
+%% the standard for producing the global statistical yearbook and the
+%% pocket book; but the same code is used as template to generate five
+%% other regional books. The gain in efficiency was unimaginable with
+%% three individual is sufficient to generate four publication including
+%% the text within a year and potentially raised to seven this year.
+
+Reproducibility is the norm in academics, this property allows one to
+verify, improve and reproduce the research for future use. We believe
+that a publication such as the statistical yearbook which publishes
+statistics and aggregates should be examined under the same
+transparency standard. The publication of the methodology is equally
+important as the statistics itself.
+
+
+%% Talk about the similarity about UNDP and ISO3
+
+%% UNESCO - country name
+%% UNICEF - ISO3/UNDP?
+%% ILO - ISO3
+%% WHO - country name/ISO3
+
+The package can be installed from the CRAN repository just like all
+other R packages, and this documentation is also the vignette of the
+package.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{if}(!\hlfunctioncall{is.element}(\hlstring{"FAOSTAT"}, \hlfunctioncall{.packages}(all.available = TRUE)))
+   \hlfunctioncall{install.packages}(\hlstring{"FAOSTAT"})
+\hlfunctioncall{library}(FAOSTAT)
+\hlcomment{## vignette("FAOSTAT", package = "FAOSTAT")}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+
+\section{Download data from FAOSTAT}
+
+FAOSTAT is the largest agricultural database in the world, it contains
+data from land productivity to agricultural production and trade
+dating back from 1960 to the most recent available data. Detailed
+information on meta data, methods and standards can be found on the
+official website of FAOSTAT
+\url{http://faostat3.fao.org/home/index.html} and the Statistics
+Division (ESS) \url{http://www.fao.org/economic/ess/en/}.
+
+In order to access the data using the FAOSTAT API, the domain, item
+and element code of the indicator of interest is required. They are
+defined as:
+
+\begin{itemize}
+  {\setlength\itemindent{48pt}\item[Domain Code]: \hfill\\ The domain
+    associated with the data. For example, production, trade, prices
+    etc.}  {\setlength\itemindent{30pt}\item[Item Code]: \hfill\\
+    These are the codes relating to the commodity or product group
+    such as wheat, almonds, and aggregated item like "total cereals".}
+  {\setlength\itemindent{49pt}\item[Element Code]: \hfill\\Lastly,
+    this is the quantity/unit or data collection type associated with
+    the commodity. Typical elements are quantity, value or
+    production/extraction rate.}
+\end{itemize}
+
+An interactive function \code{FAOsearch} has been provided for the
+user to identify the respective codes. An object \code{.LastSearch}
+will be assigned after the search and can be used by both the
+\code{getFAO} and \code{getFAOtoSYB} functions as the sole argument to
+download the data.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcomment{## Use the interective function to search the code.}
+\hlfunctioncall{FAOsearch}()
+
+\hlcomment{## Use the result of the search to download the data.}
+test = \hlfunctioncall{getFAO}(query = .LastSearch)
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+
+The \code{getFAOtoSYB} is a wrapper for the \code{getFAO} to batch
+download data, it supports error recovery and stores the status of the
+download. The function also splits the data downloaded into entity
+level and regional aggregates, saving time for the user. Query results
+from \code{FAOsearch} can also be used.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcomment{## A demonstration query}
+FAOquery.df = \hlfunctioncall{data.frame}(varName = \hlfunctioncall{c}(\hlstring{"arableLand"}, \hlstring{"cerealExp"}, \hlstring{"cerealProd"}),
+                         domainCode = \hlfunctioncall{c}(\hlstring{"RL"}, \hlstring{"TP"}, \hlstring{"QC"}),
+                         itemCode = \hlfunctioncall{c}(6621, 1944, 1717),
+                         elementCode = \hlfunctioncall{c}(5110, 5922, 5510),
+                         stringsAsFactors = FALSE)
+
+\hlcomment{## Download the data from FAOSTAT}
+FAO.lst = \hlfunctioncall{with}(FAOquery.df,
+    \hlfunctioncall{getFAOtoSYB}(name = varName, domainCode = domainCode,
+                itemCode = itemCode, elementCode = elementCode,
+                useCHMT = TRUE, outputFormat = \hlstring{"wide"}))
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+The object returned is a list of length three, these are entity level
+data, aggregates and the download status. The function supports both
+long and wide format.
+
+In some cases multiple China are provided, for example the trade
+domain provides data on China (41), Taiwan (214) and China plus Taiwan
+(357). The \code{CHMT} function avoids double counting if multiple
+China are detected by removing the aggregated if detected. The default
+in \code{getFAOtoSYB} is to use \code{CHMT} when possible. Otherwise,
+the \code{FAOcheck} function can be used to sanitize the data.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+FAOchecked.df = \hlfunctioncall{FAOcheck}(var = FAOquery.df$varName, year = \hlstring{"Year"},
+    data = FAO.lst$entity)
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+
+%% Need the name of the aggregates.
+
+\section{Download data from World Bank}
+The World Bank also provides an API where data from the World Bank and
+various international organization are made public. More information
+about the data and the API can be found at
+\url{http://data.worldbank.org/}
+
+The author is aware of the \pkg{WDI} package, but we have wrote this
+function before the recent update of the package with additional
+functionalities. We have plans to integrate with the \pkg{WDI} package
+to avoid confusion for the users.
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcomment{## Download World Bank data and meta-data}
+WB.lst = \hlfunctioncall{getWDItoSYB}(indicator = \hlfunctioncall{c}(\hlstring{"SP.POP.TOTL"}, \hlstring{"NY.GDP.MKTP.CD"}),
+                     name = \hlfunctioncall{c}(\hlstring{"totalPopulation"}, \hlstring{"GDPUSD"}),
+                     getMetaData = TRUE, printMetaData = TRUE)
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+The output is similar to the object generated by \code{getFAOtoSYB}
+except that if the arguement \code{getMetaData} is specified as TRUE
+then the meta data is also downloaded and saved.
+
+One point to note here, it is usually unlikely to reconstruct the
+world aggregates provided by the World Bank based on the data
+provided. The reason is that the aggregate contains Taiwan when
+available, yet the statistics for Taiwan are not published.
+
+
+
+\section{Merge data from different sources}
+Merge is a typical data manipulation step in daily work yet a
+non-trivial exercise especially when working with different data
+sources. The built in \textit{mergeSYB} function enables one to merge
+data from different sources as long as the country coding system is
+identified. Currently the following country coding translation are
+supported and included in the internal data set FAOcountryProfile of
+the package:
+
+
+\begin{itemize}
+  \item United Nations M49 country standard [UN\_CODE]\\
+    \url{http://unstats.un.org/unsd/methods/m49/m49.htm}
+  \item FAO country code scheme [FAOST\_CODE]\\
+    \url{http://termportal.fao.org/faonocs/appl/}
+  \item FAO Global Administrative Unit Layers (GAUL).[ADM0\_CODE]
+  \item ISO 3166-1 alpha-2 [ISO2\_CODE]\\
+    \url{http://en.wikipedia.org/wiki/ISO\_3166-1\_alpha-2}
+  \item ISO 3166-1 alpha-2 (World Bank) [ISO2\_WB\_CODE]\\
+    \url{http://data.worldbank.org/node/18}
+  \item ISO 3166-1 alpha-3 [ISO3\_CODE]\\
+    \url{http://en.wikipedia.org/wiki/ISO\_3166-1\_alpha-3}
+  \item ISO 3166-1 alpha-3 (World Bank) [ISO3\_WB\_CODE]\\
+    \url{http://data.worldbank.org/node/18}
+\end{itemize}
+
+Data from any sources employ country classification listed above can
+be supplied to \code{mergeSYB} in order to obtain a single merged
+data. However, the column name of the country coding scheme is
+required to be the same as the name in square bracket, the
+responsibility of identifying the coding system lies with the user.
+
+Nevertheless, often only the name of the country is provided and thus
+merge is not possible or inaccurate based on names. We have provided a
+function to obtain country codes based on the names matched. In order
+to avoid matching with the wrong code, the function only attempts to
+fill in countries which have exact match.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcomment{## Just a demonstration}
+Demo = WB.lst$entity[, \hlfunctioncall{c}(\hlstring{"Country"}, \hlstring{"Year"}, \hlstring{"totalPopulation"})]
+demoResult = \hlfunctioncall{fillCountryCode}(country = \hlstring{"Country"}, data = Demo,
+    outCode = \hlstring{"ISO2_WB_CODE"})
+
+\hlcomment{## Countries have not been filled in.}
+\hlfunctioncall{unique}(demoResult[\hlfunctioncall{is.na}(demoResult$ISO2_WB_CODE), \hlstring{"Country"}])
+\end{alltt}
+\begin{verbatim}
+## [1] "China" "Sudan"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+We have not implemented a regular expression match for the
+identification reason listed below. From the above example we can see
+that both China and Sudan are not filled in, the identification of
+Sudan prior to 2011 and China should be carefully examined.
+
+
+Below we list some commonly observed problem when merging data from
+different sources.
+
+\subsection{Identification problem}
+Due to the fact that different organization are bounded by different
+political agenda the users need to be aware of the precise definition
+and legal recognition of countries.
+
+Take example, the China provided by the World Bank does not include
+Taiwan, Hong Kong and Macao. On the other hand, FAO provides not only
+a single China (FAO = 41), but also China plus Taiwan (FAO = 357)
+depending on the context. In addition, it is common to observed
+statistics for China (ISO2 = CN or ISO3 = CHN) which includes Taiwan,
+Hong Kong and Macao. The default trnslates China from other country
+coding scheme to Mainland China (FAO = 41) and is not matched in
+\code{fillCountryCode}.
+
+\subsection{Representation problem}
+Moreover, the situation is further complicated by disputed territories
+or economic union such as Kosovo and Belgium-Luxembourg which does not
+have representation under particular country coding system.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcomment{## Countries which are not listed under the ISO2 international standard.}
+FAO.df = \hlfunctioncall{translateCountryCode}(data = FAOchecked.df, from = \hlstring{"FAOST_CODE"},
+    to = \hlstring{"ISO2_CODE"})
+\end{alltt}
+\begin{verbatim}
+## 
+## NOTE: Please make sure that the country are matched according to their definition
+\end{verbatim}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: The following entries does not have 'ISO2\_CODE' available}}\begin{verbatim}
+##     FAOST_CODE ISO2_CODE
+## 29          15      <NA>
+## 56         259      <NA>
+## 58         351      <NA>
+## 62         357      <NA>
+## 95          62      <NA>
+## 193        147      <NA>
+##                                            OFFICIAL_FAO_NAME
+## 29                                        Belgium-Luxembourg
+## 56                                           Channel Islands
+## 58  China (China mainland, Hong Kong SAR, Macao SAR, Taiwan)
+## 62                            China (China mainland, Taiwan)
+## 95                                              Ethiopia PDR
+## 193                                  the Republic of Namibia
+\end{verbatim}
+\begin{alltt}
+
+\hlcomment{## Countries which are not listed under the UN M49 system.}
+WB.df = \hlfunctioncall{translateCountryCode}(data = WB.lst$entity, from = \hlstring{"ISO2_WB_CODE"},
+    to = \hlstring{"UN_CODE"})
+\end{alltt}
+\begin{verbatim}
+## 
+## NOTE: Please make sure that the country are matched according to their definition
+\end{verbatim}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: The following entries does not have 'UN\_CODE' available}}\begin{verbatim}
+##     ISO2_WB_CODE UN_CODE OFFICIAL_FAO_NAME
+## 155           KV      NA            Kosovo
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+\subsection{Transition problem}
+Finally, the discontinuity and transition of countries further
+increases the complexity of the data. The South Sudan was recognized
+by the United Nations on the 9th of July 2011, however, the statistics
+reported by The republic of the Sudan in the same year can also
+includes data for South Sudan thus failing the mutually exclusive
+test. Moreover, sources which uses ISO standard country code have no
+way to distinguish between the new and old Sudan (SD and SDN are used
+for both entity) which causes problem in merge with country system
+that distingiushes the entity.
+
+Finally, if historical aggregates are computed then a region
+composition which does not backtrack in time will result in an
+aggregate which is incorrect. For more details about historical and
+transitional countries please refer to
+\url{http://unstats.un.org/unsd/methods/m49/m49chang.htm}
+
+Given the lack of an internationally recognized standard which
+incorporates all these properties, we suggests the use of the FAO
+country standard and region profile shipped with the package which
+addresses most of these problems.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+merged.df = \hlfunctioncall{mergeSYB}(FAOchecked.df, WB.lst$entity, outCode = \hlstring{"FAOST_CODE"})
+\end{alltt}
+\begin{verbatim}
+## 
+## NOTE: Please make sure that the country are matched according to their definition
+## 
+## 
+## NOTE: Please make sure that the country are matched according to their definition
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+%% \section{Computing growth, and other derivatives}
+%% There are two types of growth rate shipped with the package, the least
+%% squares growth rate and the geometric growth rate. The least squares
+%% growth rate is used when the time series is of sufficient length. The
+%% default is at least 5 usable observations, however if the time series
+%% is sparse and more than 50\% of the data are missing than the robust
+%% regression is used.
+
+
+%% Check how to fix the problem with zero when computing least squares
+%% growh rate
+
+%% Catch the error and examine the problem
+
+%% Rewrite the lsgr, since if there are gaps in the data then the all
+%% NA statement is not covered. The lsgr should not be computed by
+%% rolling.
+
+%% The loop needs to be taken outside.
+
+
+\section{Computing regional or economical aggregates}
+Aggregation is another data manipulation step that is commonly over
+seen. The result can vary due to the differences between the regional
+composition and the set of countries used. Furthermore, it is
+complicated by the amount of missing values which can render the
+aggregates incomparable. Given the missing values and diverging
+country sets, aggregation can only serve as approximates in order to
+inform the general situation of the region. The following rules are
+implemented to ensure the aggregates computed are meaningful and
+comparable.
+
+
+\begin{itemize}
+  \item A minimum threshold in which the data must be present, the
+    default is 65\% for every individual year.
+  \item The number of reporting entities must be similar over the
+    years. It does not make sense to compare aggregates of 1995 and
+    2000 if the number of reporting countries differ vastly, the
+    default tolerance is 15.
+\end{itemize}
+
+In addition, historical countries are aggregated to ensure
+comparability over time. For example, The Former Soviet Union is not
+part of the current definition of the M49 standards, nevertheless,
+it would be ignorant to omit it from the aggregation.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcomment{## Compute aggregates under the FAO continental region.}
+relation.df = FAOregionProfile[, \hlfunctioncall{c}(\hlstring{"FAOST_CODE"}, \hlstring{"FAO_MACRO_REG"})]
+
+FAOregion.df = \hlfunctioncall{aggRegion}(data = merged.df, relationDF = relation.df,
+                         aggVar = \hlfunctioncall{c}(\hlstring{"arableLand"}, \hlstring{"cerealExp"}, \hlstring{"cerealProd"},
+                                    \hlstring{"totalPopulation"}, \hlstring{"GDPUSD"}),
+                         aggMethod = \hlfunctioncall{rep}(\hlstring{"sum"}, 5),
+                         unspecifiedCode = \hlstring{"Unspecified"})
+
+\hlcomment{## Compute aggregates under the UNSD M49 continental region.}
+relation.df = FAOregionProfile[, \hlfunctioncall{c}(\hlstring{"FAOST_CODE"}, \hlstring{"UNSD_MACRO_REG"})]
+
+UNregion.df = \hlfunctioncall{aggRegion}(data = merged.df, relationDF = relation.df,
+                        aggVar = \hlfunctioncall{c}(\hlstring{"arableLand"}, \hlstring{"cerealExp"}, \hlstring{"cerealProd"},
+                                   \hlstring{"totalPopulation"}, \hlstring{"GDPUSD"}),
+                        aggMethod = \hlfunctioncall{rep}(\hlstring{"sum"}, 5),
+                        unspecifiedCode = \hlstring{"Unspecified"})
+
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+\section{Conclusion}
+
+
+
+
+\section*{Acknowledgement}
+The author owes a great debt to Fillipo Gheri, Adam Prakash, Guido
+Barbaglia, Amy Heyman, Amanda Gordon, Jacques Joyeux, and Markus
+Gesmann for their contribution to the pacakge, whom the package would
+not exist without their expertise.
+
+The author would also like to express his profound gratitude to the
+directors Pietro Gennari and Josef Schimidhuber and the entire ESS
+division for their support, experience and every little thing they
+have done was greatly appreciated.
+
+
+%% The author understand that a standardised framework such as SDMX is
+%% under way, yet this serves as current solution.
+
+%% These are internal knowledges we would like to share, along with
+%% the data we are opening.
+
+%% Develop warning messages for all the disputed territories.
+
+%% We understand that it may be preferable to use the S4 or the R5
+%% class to rigorously define the elements.
+
+\end{document}
+
+

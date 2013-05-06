@@ -1,0 +1,917 @@
+\documentclass{article}\usepackage{graphicx, color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\definecolor{fgcolor}{rgb}{0.2, 0.2, 0.2}
+\newcommand{\hlnumber}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlfunctioncall}[1]{\textcolor[rgb]{0.501960784313725,0,0.329411764705882}{\textbf{#1}}}%
+\newcommand{\hlstring}[1]{\textcolor[rgb]{0.6,0.6,1}{#1}}%
+\newcommand{\hlkeyword}[1]{\textcolor[rgb]{0,0,0}{\textbf{#1}}}%
+\newcommand{\hlargument}[1]{\textcolor[rgb]{0.690196078431373,0.250980392156863,0.0196078431372549}{#1}}%
+\newcommand{\hlcomment}[1]{\textcolor[rgb]{0.180392156862745,0.6,0.341176470588235}{#1}}%
+\newcommand{\hlroxygencomment}[1]{\textcolor[rgb]{0.43921568627451,0.47843137254902,0.701960784313725}{#1}}%
+\newcommand{\hlformalargs}[1]{\textcolor[rgb]{0.690196078431373,0.250980392156863,0.0196078431372549}{#1}}%
+\newcommand{\hleqformalargs}[1]{\textcolor[rgb]{0.690196078431373,0.250980392156863,0.0196078431372549}{#1}}%
+\newcommand{\hlassignement}[1]{\textcolor[rgb]{0,0,0}{\textbf{#1}}}%
+\newcommand{\hlpackage}[1]{\textcolor[rgb]{0.588235294117647,0.709803921568627,0.145098039215686}{#1}}%
+\newcommand{\hlslot}[1]{\textit{#1}}%
+\newcommand{\hlsymbol}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlprompt}[1]{\textcolor[rgb]{0.2,0.2,0.2}{#1}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{url}
+\usepackage[sc]{mathpazo}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=2,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]{hyperref}
+\hypersetup{
+ pdfstartview={XYZ null null 1}}
+\usepackage{breakurl}
+
+\begin{document}
+
+\title{\bf A package for transparent and reproducible statistical
+  yearbook}
+\author{Michael C. J. Kao\\ Food and Agricultural Organization of the
+  United Nation}
+\date{}
+
+\maketitle
+\tableofcontents
+
+
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: there is no package called 'Rgraphviz'}}\end{kframe}
+\end{knitrout}
+
+
+\section{Introduction}
+The idea of using R and \LaTeX was initiated by Adam Prakash and
+Mattieu Stigler of the FAO of the United Nation, this has now been
+extended and become the standard procedure for producing the
+statistical year book for the both the global and the regional
+statistical year book of the FAO.
+
+The automation along with the R package brings tremendous amount of
+benefits, speeding up the production process and open up the data and
+methodology to the general public.
+
+In this small document we will illustrate the production process and
+demonstrate how the use of the package can increase transparency and
+sustainability.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: "graphNEL" is not a defined class}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "addEdge"}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'gd4' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'gd4' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'gd4' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "renderGraph"}}\end{kframe}
+\end{knitrout}
+
+
+In the work flow diagram, square represents input files, eclipse
+represnts R functions and diamonds are output files. The process
+describes how the input files, intermediate outputs and R functions are
+used to generate the final statistical year book of the FAO.
+
+\subsection{Installations}
+
+\section{Detail}
+\subsection{Input files (In square)}
+The Meta Data file and the construction file are temporary as they will
+eventually be replaced and maintained in data bases to avoid manual fill
+in. Nevertheless, the diseemination will always be manual as it is
+specific to each book.
+
+\subsubsection{Meta data file}
+File containing information about all indicators, the source and download
+path. Every indicator used in the statistical year book should have an
+entry regardless whether it is extracted or computed. These information
+has to be manually filled in currently, but in the near future we hope
+to have a database to store these information.
+
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{l|p{8cm}}
+    \hline
+    Column name & Description\\
+    \hline
+    DATA\_KEY & The FAO name of the variable\\
+    SERIES\_NAME & The name and description of the variable\\
+    SERIES\_NAME\_SHORT & Sames as SERIES\_NAME, just shorter and is
+    mainly used for labels\\
+    QUANTITY & The multiplier factor for the unit (e.g. 1000)\\
+    ORIG\_UNIT & The unit the variable is measured in\\
+    INFO & Additional information about the variable\\
+    OWNER & The owner or provider of the data.\\
+    SOURCE & The original source of the data\\
+    DATA\_TYPE & Whether the data is download as raw or constructed
+    based on the construction file.\\
+    SQL & All the SQL related fields are used to specify the download
+    path for FAO data.\\
+    WDINAME & The indicator name for the World Bank Development Index.\\
+    COMMENTS & Additional information.\\
+    \hline
+  \end{tabular}
+\end{table}
+
+
+\subsubsection{Construction file}
+This file contains two important element, the aggregation rule for how
+variables should be aggregated for both territorial or regional. Second,
+the construction rule of indicators to be computed in house.
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{l|p{8cm}}
+    \hline
+    Column name & Description\\
+    \hline
+    DATA\_KEY\_PROC & The name of the constructed variable, if missing
+    then default names are assigned based on the type of construction\\
+    DATA\_KEY\_ORIG1 & The first variable used for construction\\
+    DATA\_KEY\_ORIG2 & Same as above, for shares this is the total variable\\
+    CONSTRUCTION\_TYPE & The type of construction (e.g. share, growth)\\
+    GROWTH\_RATE\_FREQ & The frequency of the growth rate (1 for annual,
+    10 for 10 year growth rate vice versa)\\
+    AGGREGATION & Not sure if this should be here anymore\\
+    COMMENTS & Additional Information\\
+    \hline
+  \end{tabular}
+\end{table}
+
+
+%% \clearpage
+%% \subsubsection{Dissemination file}
+%% The dissemination file contains information of how to produce charts,
+%% maps, tables and at the same time provide the labels, color and location
+%% of the object within the book. It is also used to produce the \LaTeX
+%% file for the report.
+
+%% \begin{table}[!ht]
+%%   \begin{tabular}{l|p{8cm}}
+%%     \hline
+%%     Column name & Description\\
+%%     \hline
+%%     PART\_CHAPTER\_NUMBER & The name of the plot\\
+%%     PART & The location of the plot in the book\\
+%%     TOPIC\_NAME & \\
+%%     TOPIC\_NAME\_ABB & \\
+%%     SPREAD\_NUMBERorTABLE\_NUMBER & \\
+%%     TeX\_ENVIRONMENT & \\
+%%     COLUMN\_NUMBERorOBJECT\_ORDER & \\
+%%     MANUAL & \\
+%%     OBJECT & Type of dissemination, chart, map or table\\
+%%     TYPE & Obsolete\\
+%%     SUBTYPE & Obsolete\\
+%%     AREA & The regional classfication to be used\\
+%%     TABLE\_NAMEorDESCRIP\_OBJECTorBULLET & Tile for the disseminated object\\
+%%     COLUMN\_NAMEorCAPTION & The caption of the disseminated object\\
+%%     TABLE\_SEP1 & \\
+%%     TABLE\_SEP2 & \\
+%%     YEAR & \\
+%%     YearStart & The starting year of the plot or table\\
+%%     YearEnd & The end date for the object\\
+%%     Interval &\\
+%%     QUANTITY & The quantity unit\\
+%%     ORIG\_UNIT & The unit of the plot\\
+%%     NUMBER\_OF\_VARIABLES & The number of variables used in the plot/chart.\\
+%%     AGG & \\
+%%     DATA\_KEY ($1\sim10$) & The name of the variables to be plotted.\\
+%%     comment & \\
+%%     \hline
+%%   \end{tabular}
+%% \end{table}
+
+\subsection{FAOcountryProfile and FAOregionProfile}
+These two in-built data sets comes along with the FAOSYB package and
+contains information about country and regions.
+
+\section{Step by step demonstration}
+
+\subsection{Read the input files}
+Lets read in the meta data file first
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+meta.lst = \hlfunctioncall{read.FAOSYBmeta}(file = \hlstring{"Metadata.csv"})
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "read.FAOSYBmeta"}}\begin{alltt}
+\hlfunctioncall{names}(meta.lst)
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'meta.lst' not found}}\end{kframe}
+\end{knitrout}
+
+
+
+From the structure, we can see that the object has five lists
+contained. The first object contains the full file, while the WDI,
+FAOSTAT list are the subsets of the full file which will be used to
+enable automized download of World Bank and FAOSTAT data. While OTHER
+contain a list of variables that have to be manually downloaded and
+processed. The final element is the unit of the data where it will be
+used to scale the data to the raw unit without any multiplier factor
+(e.g. 1,000 Kilogram to just Kilogram)
+
+Now let us read in the construction file which contains the rule for
+constructin new variables.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+con.df = \hlfunctioncall{read.FAOSYBcon}(file = \hlstring{"Construction.csv"})
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "read.FAOSYBcon"}}\end{kframe}
+\end{knitrout}
+
+
+
+
+\subsection{Download data from FAOSTAT}
+First lets download data from the FAOSTAT API
+\url{http://faostat.fao.org/}, the SQL codes contained in ``FAOSTAT''
+list of the meta data are required to download data from FAOSTAT. A name
+has to be given to each of the variable.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+FAO.df = \hlfunctioncall{with}(meta.lst[[\hlstring{"FAOSTAT"}]],
+    \hlfunctioncall{getFAOtoSYB}(name = DATA_KEY,
+                domainCode = SQL_DOMAIN_CODE, elementCode = SQL_ELEMENT_CODE,
+                itemCode = SQL_ITEM_CODE))
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+The output contains three lists with the territory/country level data
+stored in the first, aggregates in the second and the error messages in
+the second. The user can examine the result to find out which variables
+have been downloaded successfully, and which have failed.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{names}(FAO.df)
+\end{alltt}
+\begin{verbatim}
+## [1] "FAOST_CODE"   "ISO2_WB_CODE" "Year"         "arableLand"   "cerealExp"   
+## [6] "cerealProd"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+%% This is just to check whether the data from FAO are complete and it
+%% seems at least there is not data for Monaco (140)
+
+
+
+
+%% Looks like there is no over-lapping between 351 and 357, but there
+%% is not Taiwan.
+
+
+
+
+\subsection{Download data from the World Bank API}
+Now lets use the information in the ``WDI'' list to download data from
+the World Bank Indicator API. More information about the API can be
+found on the official website \url{http://data.worldbank.org/}
+
+To use the \emph{getWDItoSYB} function for extracting data from the
+World Bank API, only the indicator name is required (e.g. SP.POP.TOTL
+for population). Several options are available for customising the
+output, first the name argument allows one to assign different name to
+the indicator if one wish to use a more meaningful name or a different
+naming scheme. Second, the meta data of the variables can be downloaded
+at the same time, and has the option to be printed and saved. Finally,
+the World Bank provides aggregates such as ``World'', ``Heavily indebt
+poor country (HIPC)'', if these are not required then the dropAggregate
+argument will only preserve the lowest level data.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+WB.df = \hlfunctioncall{with}(meta.lst[[\hlstring{"WDI"}]], \hlfunctioncall{getWDItoSYB}(indicator = WDINAME,
+    name = DATA_KEY, getMetaData = FALSE, saveMetaData = FALSE))
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+The structure of the output is similar to the object downloaded by
+\emph{getFAOtoSYB} except that the country coding system is in
+``ISO2\_WB\_CODE'' scheme rather than FAO coding scheme.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{names}(WB.df)
+\end{alltt}
+\begin{verbatim}
+## [1] "ISO2_WB_CODE"    "UN_CODE"         "Country"         "Year"           
+## [5] "totalPopulation" "GDPUSD"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+Nevertheless, the package also come along with the
+\emph{translateCountryCode} function which enables the user to translate
+between different coding system contained in the data
+\textbf{FAOcountryProfile}. Otherwise, the same mechanism is also
+provided by the \emph{mergeSYB} function.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+WBcountry.df = \hlfunctioncall{translateCountryCode}(WB.df$data, from = \hlstring{"ISO2_WB_CODE"},
+  to = \hlstring{"FAOST_CODE"})
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: 'by' must specify uniquely valid column(s)}}\end{kframe}
+\end{knitrout}
+
+
+\subsection{Working with manual data}
+It is inevitable to deal with manual data from different sources,
+below we give a brief demonstration of how to use some helper function
+within the package to ease the job.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+wrpc.df = \hlfunctioncall{read.csv}(file = \hlstring{"WaterResourcesPerCapita.csv"}, header = TRUE,
+  na.strings = \hlstring{"[[:space:]]"}, stringsAsFactors = FALSE)
+
+\hlcomment{## Convert string spaces to empty and coerce to numeric.}
+wrpc.df[, \hlstring{"AQ.WAT.WATPCP.MC.NO"}] = \hlfunctioncall{as.numeric}(\hlfunctioncall{gsub}(\hlstring{"[[:space:]]"}, \hlstring{""},
+         wrpc.df[, \hlstring{"AQ.WAT.WATPCP.MC.NO"}]))
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+Since the data from AQUASTAT and some other sources does not provide a
+coding system, the \emph{fillFAOcode} helps to fill in the FAOSTAT code
+based on the names matched in the FAOcountryProfile. However, certain
+countries may not be matched and requires manual input.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcomment{## Use the fillFAOCOde function to partially fill FAOST_CODE}
+wrpcFill.df <- \hlfunctioncall{fillFAOCode}(wrpc.df, countryNameColumn = \hlstring{"Country"})
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "fillFAOCode"}}\begin{alltt}
+
+\hlcomment{## Extract the country that was not matched by the fillFAOCode function.}
+missFAOcode <- \hlfunctioncall{unique}(wrpcFill.df[\hlfunctioncall{is.na}(wrpcFill.df$FAOST_CODE), \hlstring{"Country"}])
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'wrpcFill.df' not found}}\begin{alltt}
+
+\hlcomment{## Find the code manually, some are not matched because they are multiply}
+\hlcomment{## matched (e.g. China) and requires identification of which country they}
+\hlcomment{## actually refer to.}
+manualFAOcode <- \hlfunctioncall{c}(12, 351, 45, 47, 107, 167, 250, 56, 75, 120, 127, 150, 158, 171, 
+    185, 206, 212, 225, 215, 231, 249)
+manual.df <- \hlfunctioncall{data.frame}(Country = missFAOcode, NEW_FAOST_CODE = manualFAOcode)
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'missFAOcode' not found}}\begin{alltt}
+tmp <- \hlfunctioncall{merge}(wrpcFill.df, manual.df, by = \hlstring{"Country"}, all.x = TRUE)
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'wrpcFill.df' not found}}\begin{alltt}
+tmp[\hlfunctioncall{is.na}(tmp$FAOST_CODE), \hlstring{"FAOST_CODE"}] <- tmp[\hlfunctioncall{is.na}(tmp$FAOST_CODE), \hlstring{"NEW_FAOST_CODE"}]
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'tmp' not found}}\begin{alltt}
+wrpcFinal.df <- tmp[, \hlfunctioncall{c}(\hlstring{"FAOST_CODE"}, \hlstring{"Year"}, \hlstring{"AQ.WAT.WATPCP.MC.NO"})]
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'tmp' not found}}\end{kframe}
+\end{knitrout}
+
+
+
+\subsection{Merge data from different sources}
+The merge function provided in the package has in built translation, so
+as long as the column name of the coding scheme matches the name in the
+\textbf{FAOcountryProfile}, the function will recognise the coding
+system and merge them together. There is one thing to note, there will
+be two entries for China since the definition of China is different
+between FAO and World Bank.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+allData.df = \hlfunctioncall{mergeSYB}(FAO.df$data,
+  WB.df$data[, -\hlfunctioncall{grep}(\hlstring{"Country"}, \hlfunctioncall{colnames}(WB.df$data))], wrpcFinal.df)
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: Unknown country code in x, check FAOcountryProfile for supported country code}}\end{kframe}
+\end{knitrout}
+
+
+After merging the data, we would like to scale the data to its base
+unit. This is because the unit can differ during the dissemination step
+and thus working with the base unit without any multiplier simplifies
+the process. For example, to present the table we want to show the value
+in Kilogram. However, we would want to show 100 kilogram when they are
+aggregated in to region. When the variable is not at the base unit we
+would have to find the conversion multipler, but when all the variable
+are scale to base unit then we can simply just multipler and get what
+every unit we like.
+
+\subsection{Scale data to base unit}
+It is recommended to scale the data to base units (e.g. use kg instead
+of 1,000 kg). Using the base unit avoids confusion later in the
+dissemintation step where a plot may require different scales.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "translateUnit"}}\begin{alltt}
+scaleData.df = \hlfunctioncall{toBaseUnit}(allData.df, meta.lst[[\hlstring{"UNIT_MULTI"}]])
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "toBaseUnit"}}\end{kframe}
+\end{knitrout}
+
+
+
+
+
+
+%% The following list of countries are reported but not in the M49
+%% definition.
+
+
+
+
+\subsection{Construct new variables using existing variables}
+Using the rules provided by the construction file to construct new
+variables such as growth and shares.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+newVar.df = \hlfunctioncall{with}(con.df[con.df$CONSTRUCTION_TYPE %in%
+    \hlfunctioncall{c}(\hlstring{"share"}, \hlstring{"growth"}, \hlstring{"change"}, \hlstring{"index"}), ],
+    \hlfunctioncall{constructSYB}(scaleData.df, origVar1 = DATA_KEY_CONSTR1,
+        origVar2 = DATA_KEY_CONSTR2, newVarName = DATA_KEY_PROC,
+        constructType = CONSTRUCTION_TYPE, grFreq = GROWTH_RATE_FREQ))
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'con.df' not found}}\end{kframe}
+\end{knitrout}
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{names}(newVar.df)
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'newVar.df' not found}}\end{kframe}
+\end{knitrout}
+
+
+Again, the output gives two list with the first containing the processed
+data and the newly constructed variables in the same data frame. While
+the second list contain the result of the construction.
+
+
+\subsection{Aggregate and subset data into M49 definition}
+The \emph{aggCountry} function allow one to aggregate territory entries
+into country or higher level classification based on the relatinoship
+specified.
+
+The following example shows the relationship between the FAO definition
+and the M49 definition. It is important to specify the correct method
+and weighting variable otherwise the aggregate will produce erroneous
+output. The \emph{keepUnspecified} option will retain the entries that
+are not included in the M49 definition which will be useful to analyse
+what has been omitted.
+
+
+
+%% Use 41 for China in M49
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcomment{## The water resources per capita does not have an aggregation method}
+\hlcomment{## yet so we will use the mean.}
+con.df[\hlfunctioncall{grep}(\hlstring{"AQ.WAT.WAT"}, con.df$DATA_KEY_PROC), \hlstring{"AGGREGATION"}] = \hlstring{"mean"}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'con.df' not found}}\begin{alltt}
+
+crdf = \hlfunctioncall{data.frame}(FAOST_CODE = FAOcountryProfile[, \hlstring{"FAOST_CODE"}, ],
+                  UN_CODE = FAOcountryProfile[, \hlstring{"MOTHER_M49_CODE"}, ])
+
+country.df = \hlfunctioncall{with}(con.df[!\hlfunctioncall{is.na}(con.df$AGGREGATION), ],
+    \hlfunctioncall{aggCountry}(newVar.df$data,
+               relationDF = crdf,
+               aggVar = DATA_KEY_PROC, aggMethod = AGGREGATION,
+               weightVar = DATA_KEY_WEIGHT, keepUnspecified = FALSE))
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'con.df' not found}}\begin{alltt}
+
+country.df = \hlfunctioncall{merge}(FAOcountryProfile[,
+    \hlfunctioncall{c}(\hlstring{"UN_CODE"}, \hlstring{"OFFICIAL_FAO_NAME"})], country.df)
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'country.df' not found}}\begin{alltt}
+
+
+\hlcomment{## Countries that have been aggregated into unspecified}
+FAOcountryProfile[FAOcountryProfile$FAOST_CODE %in%
+                  \hlfunctioncall{c}(15, 51, 62, 151, 164, 186, 205, 206, 228, 243, 248),
+                  \hlstring{"OFFICIAL_FAO_NAME"}]
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+After obtaining the data, the package also contain functions for
+exploring data. We strongly advise users to explore the territory
+level data before proceeding with any further manipulation.
+
+\subsection{Explore sparsity}
+Below are two example of how to use the \emph{sparsityHeatMap} to see
+how the missingness occur in each variable by country and time. The plot
+is grouped into four panels, the first three panel groups the country by
+their similarity of value while the last panel shows country which have
+not reported any value.
+
+The population data is very complete and missing only at the later years
+for some country.
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+explore.df= \hlfunctioncall{merge}(FAOcountryProfile[, \hlfunctioncall{c}(\hlstring{"UN_CODE"}, \hlstring{"LAB_NAME"})],
+  country.df, by = \hlstring{"UN_CODE"})
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'country.df' not found}}\begin{alltt}
+explore.df = \hlfunctioncall{subset}(explore.df, Year %in% 1990:2012)
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'explore.df' not found}}\begin{alltt}
+\hlfunctioncall{sparsityHeatMap}(explore.df, country = \hlstring{"LAB_NAME"}, year = \hlstring{"Year"},
+                var = \hlstring{"SP.POP.TOTL"})
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "sparsityHeatMap"}}\end{kframe}
+\end{knitrout}
+
+
+\clearpage
+On the other hand, we can see the agricultural value add per work is
+very sparse. In addition, a large amount of countries does not even have
+any data.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{sparsityHeatMap}(explore.df, country = \hlstring{"LAB_NAME"}, year = \hlstring{"Year"},
+                var = \hlstring{"NV.AGR.TOTL.ZS"})
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "sparsityHeatMap"}}\end{kframe}
+\end{knitrout}
+
+
+\clearpage
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{sparsityHeatMap}(explore.df, country = \hlstring{"LAB_NAME"}, year = \hlstring{"Year"},
+                var = \hlstring{"AQ.WAT.WATPCP.MC.NO"})
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "sparsityHeatMap"}}\end{kframe}
+\end{knitrout}
+
+
+\clearpage
+The panel data plot may requires a large screen or scaled and saved if
+the number of countries are large. The advantage of this plot allows one
+to identify the behaviour of this variable, in particular if one was to
+build models or carrying out imputation. The chracteristics that govern
+the variable and the transferability of country information determines
+what type of model is available.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{tsPanel}(explore.df, country = \hlstring{"LAB_NAME"}, year = \hlstring{"Year"},
+        var = \hlstring{"SP.POP.TOTL"}, ylab = \hlstring{"Total Population"})
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'explore.df' not found}}\end{kframe}
+\end{knitrout}
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{tsPanel}(explore.df, country = \hlstring{"LAB_NAME"}, year = \hlstring{"Year"},
+        var = \hlstring{"AQ.WAT.WATPCP.MC.NO"}, ylab = \hlstring{"Water resources per capita"})
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'explore.df' not found}}\end{kframe}
+\end{knitrout}
+
+
+
+%% Do a jitter bar graph
+
+\subsection{Imputation for regional aggregates}
+We will use linear interpolation between two successful observations
+and last observation carry forward for extrapolation.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlfunctioncall{source}(\hlstring{"~/Dropbox/SYBproject/FAOSYB Package/Package Test/temporaryScript.R"})
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}\begin{alltt}
+imputed.df = \hlfunctioncall{sybImpute}(var = \hlfunctioncall{colnames}(newVar.df$data[, -\hlfunctioncall{c}(1:2)]),
+    country = \hlstring{"FAOST_CODE"}, year = \hlstring{"Year"}, data = newVar.df$data)
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "sybImpute"}}\begin{alltt}
+
+\hlcomment{## We will use data up to 2012}
+imputed.df = \hlfunctioncall{subset}(imputed.df, Year <= 2012)
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'imputed.df' not found}}\end{kframe}
+\end{knitrout}
+
+
+\subsection{Aggregate into regions}
+After exploring the territory level data, we can aggregate the data to
+obtain the region and the global figure.
+
+The aggregation on countries and region has been seperated rather than
+sequential, the main reason for this is due to the time dimension of
+region which is not present in country level data. For example, we
+would not aggregate the old data of Sudan (206) into either Sudan
+(276) and South sudan (277). However, when we compute the regional
+aggregates all these three countries will be aggregated into Africa
+and then the world.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+rrdf = FAOcountryProfile[, \hlfunctioncall{c}(\hlstring{"FAOST_CODE"}, \hlstring{"UNSD_MACRO_REG_CODE"})]
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: undefined columns selected}}\begin{alltt}
+
+\hlcomment{## The Pacific region are all NA, because the threshhold is not}
+\hlcomment{## met. This is why we need the insignificant country threshold rule.}
+region.df = \hlfunctioncall{with}(con.df[!\hlfunctioncall{is.na}(con.df$AGGREGATION), ],
+    \hlfunctioncall{aggRegion}(Data = imputed.df,
+              relationDF = rrdf,
+              aggVar = DATA_KEY_PROC, aggMethod = AGGREGATION,
+              weightVar = DATA_KEY_WEIGHT, keepUnspecified = FALSE))
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'con.df' not found}}\begin{alltt}
+
+\hlcomment{## Check why zero the MACRO code is fill incorrectly.}
+\hlcomment{## FAOcountryProfile[FAOcountryProfile$FAOST_CODE %in%}
+\hlcomment{##                   c(15, 51, 62, 151, 164, 186, 206, 228, 248),}
+\hlcomment{##                   "OFFICIAL_FAO_NAME"]}
+
+
+region.df = \hlfunctioncall{merge}(\hlfunctioncall{na.omit}(\hlfunctioncall{unique}(FAOcountryProfile[,
+    \hlfunctioncall{c}(\hlstring{"UNSD_MACRO_REG_CODE"}, \hlstring{"UNSD_MACRO_REG"})])), region.df, all.y = TRUE)
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: undefined columns selected}}\begin{alltt}
+\hlfunctioncall{colnames}(region.df)[1:2] = \hlfunctioncall{c}(\hlstring{"UN_CODE"}, \hlstring{"OFFICIAL_FAO_NAME"})
+
+
+wrdf = \hlfunctioncall{data.frame}(UN_CODE = \hlfunctioncall{c}(2, 9, 19, 142, 150),
+                  World = \hlfunctioncall{rep}(0, 5))
+
+\hlcomment{## Check how to remove the zeros, and also fix two UNSD_MACRO_REG_CODE}
+world.df = \hlfunctioncall{with}(con.df[!\hlfunctioncall{is.na}(con.df$AGGREGATION), ],
+    \hlfunctioncall{aggRegion}(Data = region.df,
+              relationDF = wrdf,
+              aggVar = DATA_KEY_PROC, aggMethod = AGGREGATION,
+              weightVar = DATA_KEY_WEIGHT, keepUnspecified = FALSE))
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'con.df' not found}}\begin{alltt}
+
+\hlfunctioncall{colnames}(world.df)[1] = \hlstring{"UN_CODE"}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'world.df' not found}}\begin{alltt}
+
+world.df = \hlfunctioncall{data.frame}(UN_CODE = world.df[, 1], OFFICIAL_FAO_NAME = \hlstring{"World"},
+                      world.df[, 2:\hlfunctioncall{NCOL}(world.df)])
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'world.df' not found}}\begin{alltt}
+
+\hlcomment{## Combine everything}
+all.df = \hlfunctioncall{areaBind}(territory = country.df, region = region.df,
+    world = world.df)
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "areaBind"}}\end{kframe}
+\end{knitrout}
+
+
+
+
+
+
+
+%% Check why the variable numbers are different in computing aggregates
+%% and the number of variables in the data
+
+\end{document}
