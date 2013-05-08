@@ -32,19 +32,11 @@
 
 lsgr = function(x, n = 1){
     T = length(x)
-    ## if(n > T - 1){
-    ##   lsgr = rep(NA, T)
-    ##   warning("Time series not sufficiently long enough")
-    ## }
     if(all(is.na(x))){
         lsgr = rep(NA, T)
         warning("All values are NA")
     } else {
-        if(any(is.na(x))){
-            firstObs = min(which(!is.na(x)))
-        } else {
-            firstObs = 1
-        }
+      firstObs = min(which(!is.na(x)))
         if(length(na.omit(x)) < 5){
             stop("Insufficient data for least squares growth rate, use other methods")
         } else {
@@ -53,16 +45,14 @@ lsgr = function(x, n = 1){
                 lsgr = double(T)
                 lsgr[1:(firstObs + n - 1)] = NA
                 for(i in (firstObs + n):T){
-                    tmp = try((exp(coef(rlm(log(x[(i - n):(i)]) ~ t))[2]) - 1) * 100)
-                    ## This is a temporary solution for all the values
-                    ## within the sliding window as NA's
+                    tmp = try((exp(coef(rlm(log(x[(i - n):(i)]) ~ t))[2]) - 1) *
+                      100)
                     if(!inherits(tmp, "try-error")){
                         lsgr[i] = tmp
                     } else {
                         lsgr[i] = NA
                     }
                 }
-                ## lsgr = rep(NA, T)
                 warning("Over 50% of the data are missing, robust regression is used")
             } else {
                 t = 1:(n + 1)
@@ -70,8 +60,6 @@ lsgr = function(x, n = 1){
                 lsgr[1:(firstObs + n - 1)] = NA
                 for(i in (firstObs + n):T){
                     tmp = try((exp(coef(lm(log(x[(i - n):(i)]) ~ t))[2]) - 1) * 100)
-                    ## This is a temporary solution for all the values
-                    ## within the sliding window as NA's
                     if(!inherits(tmp, "try-error")){
                         lsgr[i] = tmp
                     } else {
