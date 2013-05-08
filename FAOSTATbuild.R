@@ -67,7 +67,8 @@ domainCode = base
 
 base = data.frame()
 for(i in 1:NROW(domainCode)){
-    tmp = try(fromJSON(paste("http://fenixapps.fao.org/bletchley/rest/codes/items/faostat/", domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
+   tmp = try(fromJSON(paste("http://fenixapps.fao.org/bletchley/rest/codes/items/faostat/",
+     domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
      if(!inherits(tmp, "try-error")){
         tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],
                                  itemCode = sapply(tmp, function(x) x[1]),
@@ -81,7 +82,8 @@ itemCode = base
 
 base = data.frame()
 for(i in 1:NROW(domainCode)){
-    tmp = try(fromJSON(paste("http://fenixapps.fao.org/bletchley/rest/codes/itemsaggregated/faostat/", domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
+    tmp = try(fromJSON(paste("http://fenixapps.fao.org/bletchley/rest/codes/itemsaggregated/faostat/",
+      domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
     if(!inherits(tmp, "try-error")){
         tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],
                                  itemCode = sapply(tmp, function(x) x[1]),
@@ -95,7 +97,8 @@ itemAggCode = base
 
 base = data.frame()
 for(i in 1:NROW(domainCode)){
-    tmp = try(fromJSON(paste("http://fenixapps.fao.org/bletchley/rest/codes/elements/faostat/", domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
+    tmp = try(fromJSON(paste("http://fenixapps.fao.org/bletchley/rest/codes/elements/faostat/",
+      domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
     if(!inherits(tmp, "try-error")){
         tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],
                                  elementCode = sapply(tmp, function(x) x[1]),
@@ -156,7 +159,8 @@ file.copy(from = "./Documentation/FAOSTAT.pdf",
 
 ## Create the vignette hack from (http://yihui.name/knitr/demo/vignette/)
 ## This is not required for R 3.0.0
-cat("%\\VignetteIndexEntry{General Manual}\n\\documentclass{article}\n\\begin{document}\n\\end{document}", file = "./FAOSTAT/inst/doc/FAOSTAT.Rnw")
+cat("%\\VignetteIndexEntry{General Manual}\n\\documentclass{article}\n\\begin{document}\n\\end{document}",
+    file = "./FAOSTAT/inst/doc/FAOSTAT.Rnw")
 
 ## Build and check the package
 system("R CMD INSTALL --build FAOSTAT")
