@@ -22,9 +22,6 @@
 ##' @seealso \code{\link{getWDI}}, \code{\link{getWDItoSYB}},
 ##' \code{\link{getFAOtoSYB}}, \code{\link{FAOsearch}}
 ##'
-##' @examples
-##' ## The default option is the arable land area.
-##' arlLand.df = getFAO()
 
 ## NOTE(Michael): Maybe change input from csv to json.
 
