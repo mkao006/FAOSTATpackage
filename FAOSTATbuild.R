@@ -6,6 +6,10 @@ library(roxygen2)
 library(RJSONIO)
 library(utils)
 
+## NOTE (FILIPPO): run the command
+## Sys.setenv(R_GSCMD='"C:/Program Files/gs/gs9.07/bin/gswin32c.exe"')
+## before the script.
+
 ## FAOcountryProfile data
 ## ---------------------------------------------------------------------
 
