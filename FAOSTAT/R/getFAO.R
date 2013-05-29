@@ -46,9 +46,10 @@ getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
 
     if(productionDB){
         ## base = "http://ldvapp07.fao.org:8030/wds/api?"
-
         ## changed by FILIPPO new repository
-        base = "http://lprapp16.fao.org:4012/wds/api?"
+        ## base = "http://lprapp16.fao.org:4012/wds/api?"
+        ## changed by FILIPPO again
+        base = "http://lprapp16.fao.org/wds/api?"
 
         database = "db=faostatprod&"
         selection = "select=D.AreaCode[FAOST_CODE],D.Year[Year],D.Value[Value],&from=data[D],element[E]&"
