@@ -19,7 +19,7 @@
 ##' @seealso \code{\link{getFAO}}, \code{\link{getWDItoSYB}},
 ##' \code{\link{getFAOtoSYB}}
 ##' @examples
-##' pop.df = getWDI()
+##' ## pop.df = getWDI()
 ##'
 
 ## source:

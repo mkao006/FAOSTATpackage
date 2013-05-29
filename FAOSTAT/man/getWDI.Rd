@@ -35,7 +35,7 @@
   \url{http://data.worldbank.org/}.
 }
 \examples{
-pop.df = getWDI()
+## pop.df = getWDI()
 }
 \seealso{
   \code{\link{getFAO}}, \code{\link{getWDItoSYB}},

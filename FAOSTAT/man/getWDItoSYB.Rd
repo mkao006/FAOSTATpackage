@@ -44,8 +44,8 @@
   The function downloads data from the World Bank API.
 }
 \examples{
-pop.df = getWDItoSYB(name = "total_population",
-                     indicator = "SP.POP.TOTL")
+## pop.df = getWDItoSYB(name = "total_population",
+##                      indicator = "SP.POP.TOTL")
 }
 \seealso{
   \code{\link{getWDI}}, \code{\link{getFAO}},

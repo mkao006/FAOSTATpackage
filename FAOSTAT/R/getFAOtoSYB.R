@@ -26,7 +26,7 @@
 ##'
 ##' @examples
 ##' ## The default option is the arable land area
-##' arlLand.lst = getFAOtoSYB()
+##' ## arlLand.lst = getFAOtoSYB()
 
 getFAOtoSYB = function(name = NULL, domainCode = "RL",
                        elementCode = 5110, itemCode = 6621, query,

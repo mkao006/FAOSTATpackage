@@ -22,7 +22,7 @@
   from the World Bank API
 }
 \examples{
-pop.df = getWDImetaData("SP.POP.TOTL",
-                        printMetaData = TRUE, saveMetaData = TRUE)
+## pop.df = getWDImetaData("SP.POP.TOTL",
+##                         printMetaData = TRUE, saveMetaData = TRUE)
 }
 

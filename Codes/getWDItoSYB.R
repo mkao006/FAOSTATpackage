@@ -26,8 +26,8 @@
 ##' @seealso \code{\link{getWDI}}, \code{\link{getFAO}},
 ##' \code{\link{getFAOtoSYB}}
 ##' @examples
-##' pop.df = getWDItoSYB(name = "total_population",
-##'                      indicator = "SP.POP.TOTL")
+##' ## pop.df = getWDItoSYB(name = "total_population",
+##' ##                      indicator = "SP.POP.TOTL")
 ##'
 ##'
 

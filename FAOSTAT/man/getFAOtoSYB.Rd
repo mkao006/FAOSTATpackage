@@ -46,7 +46,7 @@
 }
 \examples{
 ## The default option is the arable land area
-arlLand.lst = getFAOtoSYB()
+## arlLand.lst = getFAOtoSYB()
 }
 \seealso{
   \code{\link{getWDI}}, \code{\link{getFAO}},

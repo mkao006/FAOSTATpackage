@@ -43,10 +43,6 @@
 
   Add date range in to argument
 }
-\examples{
-## The default option is the arable land area.
-arlLand.df = getFAO()
-}
 \seealso{
   \code{\link{getWDI}}, \code{\link{getWDItoSYB}},
   \code{\link{getFAOtoSYB}}, \code{\link{FAOsearch}}

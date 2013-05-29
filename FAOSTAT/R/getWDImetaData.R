@@ -10,8 +10,8 @@
 ##' @param saveName The name of the file for the meta data to save to.
 ##' @export
 ##' @examples
-##' pop.df = getWDImetaData("SP.POP.TOTL",
-##'                         printMetaData = TRUE, saveMetaData = TRUE)
+##' ## pop.df = getWDImetaData("SP.POP.TOTL",
+##' ##                         printMetaData = TRUE, saveMetaData = TRUE)
 ##'
 
 
