@@ -48,7 +48,7 @@ getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
 #         base = "http://ldvapp07.fao.org:8030/wds/api?"
 #         base = "http://lprapp16.fao.org:4012/wds/api?"
 #         base = "http://lprapp16.fao.org/wds/api?"
-        base = "http://ldvapp07.fao.org:8032/wds/"
+        base = "http://ldvapp07.fao.org:8032/wds/api?"
 
         database = "db=faostatprod&"
         selection = "select=D.AreaCode[FAOST_CODE],D.Year[Year],D.Value[Value],&from=data[D],element[E]&"
