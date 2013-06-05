@@ -59,7 +59,8 @@ lsgr = function(x, n = 1){
                 lsgr = double(T)
                 lsgr[1:(firstObs + n - 1)] = NA
                 for(i in (firstObs + n):T){
-                    tmp = try((exp(coef(lm(log(x[(i - n):(i)]) ~ t))[2]) - 1) * 100)
+                    tmp = try((exp(coef(lm(log(x[(i - n):(i)]) ~ t))[2]) - 1) * 100, 
+                              silent = TRUE)
                     if(!inherits(tmp, "try-error")){
                         lsgr[i] = tmp
                     } else {
