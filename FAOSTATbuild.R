@@ -147,11 +147,11 @@ file.copy(from = "./DESCRIPTION", to = "FAOSTAT/",
           overwrite = TRUE)
 
 ## Include Demo
-## dir.create("FAOSTAT/demo")
-## file.copy(from = "./FAOSTATdemo.R",
-##           to = "FAOSTAT/demo/", overwrite = TRUE)
-## cat("FAOSTATdemo Demonstration for the FAOSTAT package\n",
-##     file = "FAOSTAT/demo/00Index")
+dir.create("FAOSTAT/demo")
+file.copy(from = "./FAOSTATdemo.R",
+          to = "FAOSTAT/demo/", overwrite = TRUE)
+cat("FAOSTATdemo      Demonstration for the FAOSTAT package\n",
+    file = "FAOSTAT/demo/00Index")
 
 ## Use roxygen to build the documentation
 roxygenize("FAOSTAT")
