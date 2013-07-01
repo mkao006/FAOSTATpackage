@@ -57,12 +57,6 @@ FAOsearch = function(){
             ecn = 1:length(subelementTable$elementName)
         ec = subelementTable[as.numeric(ecn), "elementCode"]
 
-        ## Print the result and save
-        ## cat(paste("Domain Code = ", dc, "\n", sep = ""))
-        ## cat(paste("Item Code = ", ic, "\n", sep = ""))
-        ## cat(paste("Element Code = ", ec, "\n", sep = ""))
-        ## .LastSearch <<- list(domainCode = dc, itemCode = as.numeric(ic),
-        ##                      elementCode = as.numeric(ec))
         tmp = expand.grid(dc, ic, ec, stringsAsFactors = FALSE)
         colnames(tmp) = c("domainCode", "itemCode", "elementCode")
         tmp = merge(tmp, domainTable[, c("domainCode", "domainName")],
@@ -77,6 +71,7 @@ FAOsearch = function(){
         final.df$itemName = NULL
         final.df$elementName = NULL
         .LastSearch <<- final.df
+        cat("\n** Search result saved as .LastSearch**\n")
 
     }
          )
