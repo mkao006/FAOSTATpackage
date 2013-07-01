@@ -23,5 +23,6 @@ install_github(repo = "FAOSTATpackage", username = "mkao006", subdir = "FAOSTAT"
 Vignettes and demos are available and please make use of them:
 
 ```r
-vignette("FAOSTAT")
+vignette(topic = "FAOSTAT")
+demo(topic = "FAOSTATdemo")
 ```
