@@ -3,7 +3,7 @@ Type: Package
 Title: A complementary package to the FAOSTAT database and the Statistical
     Yearbook of the Food and Agricultural Organization of the United Nations.
 Version: 1.5
-Date: 2013-06-05
+Date: 2013-07-01
 Authors@R: c(person("Micheal. C. J.", "Kao", role = c("aut", "cre"), email =
     "michael.kao@fao.org"), person("Markus", "Gesmann", rol = "ctb", comment =
     "Author of getWDI"), person("Filippo", "Gheri", rol = "ctb"))
@@ -12,6 +12,7 @@ Maintainer: Michael C. J. Kao <michael.kao@fao.org>
 Description: The package hosts a list of functions to download, manipulate,
     construct and aggregate agricultural statistics provided by the FAOSTAT
     database of the Food and Agricultural Organization of the United Nations.
+URL: https://github.com/mkao006/FAOSTATpackage
 License: GPL (>= 2)
 Depends:
     RJSONIO (>= 0.96-0),
