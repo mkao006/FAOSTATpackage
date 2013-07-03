@@ -5,7 +5,7 @@
   getFAO(name = NULL, domainCode = "RL",
     elementCode = 5110, itemCode = 6621, query,
     printURL = FALSE, productionDB = FALSE, useCHMT = TRUE,
-    outputFormat = "wide")
+    outputFormat = "wide", returnNames = FALSE)
 }
 \arguments{
   \item{name}{The name to be given to the variable.}
@@ -30,6 +30,9 @@
 
   \item{outputFormat}{The format of the data, can be 'long'
   or 'wide'.}
+
+  \item{returnNames}{Logical: should the area, the element
+  and the item names be reported?.}
 }
 \value{
   Outputs a data frame containing the specified data

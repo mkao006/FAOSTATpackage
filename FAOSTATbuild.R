@@ -44,7 +44,7 @@ save(FAOregionProfile, file = "FAOregionProfile.RData")
 ## ---------------------------------------------------------------------
 
 
-urlGrp = "http://fenixapps.fao.org/wds/rest/groups/faostat/en"
+urlGrp = "http://fenix.fao.org/wds/rest/groups/faostat2/en"
 
 groupCode = unique(data.frame(groupCode = sapply(fromJSON(urlGrp,
                                   encoding = "UTF-8"), function(x) x[1]),
@@ -53,12 +53,12 @@ groupCode = unique(data.frame(groupCode = sapply(fromJSON(urlGrp,
                               stringsAsFactors = FALSE))[-1, ]
 
 
-urlDom = "http://fenixapps.fao.org/wds/rest/domains/faostat/Q/en"
+urlDom = "http://fenix.fao.org/wds/rest/domains/faostat2/Q/en"
 
 ## The wds call is different to the rest, so the first row is removed.
 base = data.frame()
 for(i in 1:NROW(groupCode)){
-    tmp = fromJSON(paste("http://fenixapps.fao.org/wds/rest/domains/faostat/",
+    tmp = fromJSON(paste("http://fenix.fao.org/wds/rest/domains/faostat2/",
         groupCode[i, "groupCode"], "/en", sep = ""), encoding = "UTF-8")
     tmp2 = unique(data.frame(groupCode = groupCode[i, "groupCode"],
                              domainCode = sapply(tmp, function(x) x[1]),
@@ -71,7 +71,7 @@ domainCode = base
 
 base = data.frame()
 for(i in 1:NROW(domainCode)){
-   tmp = try(fromJSON(paste("http://fenixapps.fao.org/bletchley/rest/codes/items/faostat/",
+   tmp = try(fromJSON(paste("http://fenix.fao.org/bletchley/rest/codes/items/faostat2/",
      domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
      if(!inherits(tmp, "try-error")){
         tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],
@@ -79,14 +79,14 @@ for(i in 1:NROW(domainCode)){
                                  itemName = sapply(tmp, function(x) x[2]),
                       stringsAsFactors = FALSE))
         base = rbind(base, tmp2)
-    }
+     } 
 }
 itemCode = base
 
 
 base = data.frame()
 for(i in 1:NROW(domainCode)){
-    tmp = try(fromJSON(paste("http://fenixapps.fao.org/bletchley/rest/codes/itemsaggregated/faostat/",
+    tmp = try(fromJSON(paste("http://fenix.fao.org/bletchley/rest/codes/itemsaggregated/faostat2/",
       domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
     if(!inherits(tmp, "try-error")){
         tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],
@@ -94,14 +94,14 @@ for(i in 1:NROW(domainCode)){
                                  itemName = sapply(tmp, function(x) x[2]),
                       stringsAsFactors = FALSE))
         base = rbind(base, tmp2)
-    }
+    } 
 }
 itemAggCode = base
 
 
 base = data.frame()
 for(i in 1:NROW(domainCode)){
-    tmp = try(fromJSON(paste("http://fenixapps.fao.org/bletchley/rest/codes/elements/faostat/",
+    tmp = try(fromJSON(paste("http://fenixapps.fao.org/bletchley/rest/codes/elements/faostat2/",
       domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
     if(!inherits(tmp, "try-error")){
         tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],

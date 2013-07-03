@@ -16,6 +16,8 @@
 ##' @param useCHMT logical, whether the CHMT function should be
 ##' applied to avoid double counting of China.
 ##' @param outputFormat The format of the data, can be 'long' or 'wide'.
+##' @param returnNames Logical: should the area, the element and the
+##' item names be reported?.
 ##' @return Outputs a data frame containing the specified data
 ##' @export
 ##'
@@ -27,7 +29,7 @@
 
 getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
                   itemCode = 6621, query, printURL = FALSE, productionDB = FALSE,
-                  useCHMT = TRUE, outputFormat = "wide"){
+                  useCHMT = TRUE, outputFormat = "wide", returnNames = FALSE){
     if(!missing(query)){
         if(NROW(query) > 1)
             stop("Use 'getFAOtoSYB' for batch download")
@@ -56,9 +58,13 @@ getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
         itemCode, "),D.domaincode('", domainCode, "')", sep = "")
         join = ",JOIN(D.elementcode:E.elementcode)&orderby=E.elementnamee,D.year"
     } else {
-        base = "http://fenixapps.fao.org/wds/api?"
-        database = "db=faostat&"
-        selection = "select=A.AreaCode[FAOST_CODE],D.year[Year],D.value[Value],&from=data[D],element[E],item[I],area[A]&"
+        base = "http://fenix.fao.org/wds/api?"
+        database = "db=faostat2&"
+        if (returnNames) {
+          selection = "select=A.AreaCode[FAOST_CODE],A.AreaNameE[AreaName],E.elementnamee[ElementName],I.itemnamee[ItemName],D.year[Year],D.value[Value]&from=data[D],element[E],item[I],area[A]&"
+        } else {
+          selection = "select=A.AreaCode[FAOST_CODE],D.year[Year],D.value[Value]&from=data[D],element[E],item[I],area[A]&"
+        }
         condition = paste("where=D.elementcode(", elementCode, "),D.itemcode(",
         itemCode, "),D.domaincode('", domainCode, "')", sep = "")
         join = ",JOIN(D.elementcode:E.elementcode),JOIN(D.itemcode:I.itemcode),JOIN(D.areacode:A.areacode)&orderby=E.elementnamee,D.year"
