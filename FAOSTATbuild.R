@@ -63,16 +63,28 @@ groupCode = unique(data.frame(groupCode = sapply(fromJSON(urlGrp,
 
 urlDom = "http://fenix.fao.org/wds/rest/domains/faostat2/Q/en"
 
-## The wds call is different to the rest, so the first row is removed.
+# ## The wds call is different to the rest, so the first row is removed.
+# base = data.frame()
+# for(i in 1:NROW(groupCode)){
+#     tmp = fromJSON(paste("http://fenix.fao.org/wds/rest/domains/faostat2/",
+#         groupCode[i, "groupCode"], "/en", sep = ""), encoding = "UTF-8")
+#     tmp2 = unique(data.frame(groupCode = groupCode[i, "groupCode"],
+#                              domainCode = sapply(tmp, function(x) x[1]),
+#                              domainName = sapply(tmp, function(x) x[2]),
+#                   stringsAsFactors = FALSE))[-1, ]
+#     base = rbind(base, tmp2)
+# }
+# domainCode = base
+## NOTE (FILIPPO): removing the first row we remove Crops
 base = data.frame()
 for(i in 1:NROW(groupCode)){
-    tmp = fromJSON(paste("http://fenix.fao.org/wds/rest/domains/faostat2/",
-        groupCode[i, "groupCode"], "/en", sep = ""), encoding = "UTF-8")
-    tmp2 = unique(data.frame(groupCode = groupCode[i, "groupCode"],
-                             domainCode = sapply(tmp, function(x) x[1]),
-                             domainName = sapply(tmp, function(x) x[2]),
-                  stringsAsFactors = FALSE))[-1, ]
-    base = rbind(base, tmp2)
+  tmp = fromJSON(paste("http://fenix.fao.org/wds/rest/domains/faostat2/",
+                       groupCode[i, "groupCode"], "/en", sep = ""), encoding = "UTF-8")
+  tmp2 = unique(data.frame(groupCode = groupCode[i, "groupCode"],
+                           domainCode = sapply(tmp, function(x) x[1]),
+                           domainName = sapply(tmp, function(x) x[2]),
+                           stringsAsFactors = FALSE))
+  base = rbind(base, tmp2)
 }
 domainCode = base
 
