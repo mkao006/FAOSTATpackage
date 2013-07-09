@@ -46,11 +46,19 @@ save(FAOregionProfile, file = "FAOregionProfile.RData")
 
 urlGrp = "http://fenix.fao.org/wds/rest/groups/faostat2/en"
 
+## NOTE (FILIPPO): removing the first row we are removing Production
+## group.
+# groupCode = unique(data.frame(groupCode = sapply(fromJSON(urlGrp,
+#                                   encoding = "UTF-8"), function(x) x[1]),
+#                               groupName = sapply(fromJSON(urlGrp,
+#                                   encoding = "UTF-8"), function(x) x[2]),
+#                               stringsAsFactors = FALSE))[-1, ]
+
 groupCode = unique(data.frame(groupCode = sapply(fromJSON(urlGrp,
-                                  encoding = "UTF-8"), function(x) x[1]),
+                                                          encoding = "UTF-8"), function(x) x[1]),
                               groupName = sapply(fromJSON(urlGrp,
-                                  encoding = "UTF-8"), function(x) x[2]),
-                              stringsAsFactors = FALSE))[-1, ]
+                                                          encoding = "UTF-8"), function(x) x[2]),
+                              stringsAsFactors = FALSE))
 
 
 urlDom = "http://fenix.fao.org/wds/rest/domains/faostat2/Q/en"
@@ -101,7 +109,7 @@ itemAggCode = base
 
 base = data.frame()
 for(i in 1:NROW(domainCode)){
-    tmp = try(fromJSON(paste("http://fenixapps.fao.org/bletchley/rest/codes/elements/faostat2/",
+    tmp = try(fromJSON(paste("http://fenix.fao.org/bletchley/rest/codes/elements/faostat2/",
       domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
     if(!inherits(tmp, "try-error")){
         tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],
