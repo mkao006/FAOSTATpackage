@@ -40,106 +40,106 @@ save(FAOregionProfile, file = "FAOregionProfile.RData")
 
 
 
-## FAOmetaTable
-## ---------------------------------------------------------------------
-
-
-urlGrp = "http://fenix.fao.org/wds/rest/groups/faostat2/en"
-
-## NOTE (FILIPPO): removing the first row we are removing Production
-## group.
+# ## FAOmetaTable
+# ## ---------------------------------------------------------------------
+# 
+# 
+# urlGrp = "http://fenix.fao.org/wds/rest/groups/faostat2/en"
+# 
+# ## NOTE (FILIPPO): removing the first row we are removing Production
+# ## group.
+# # groupCode = unique(data.frame(groupCode = sapply(fromJSON(urlGrp,
+# #                                   encoding = "UTF-8"), function(x) x[1]),
+# #                               groupName = sapply(fromJSON(urlGrp,
+# #                                   encoding = "UTF-8"), function(x) x[2]),
+# #                               stringsAsFactors = FALSE))[-1, ]
+# 
 # groupCode = unique(data.frame(groupCode = sapply(fromJSON(urlGrp,
-#                                   encoding = "UTF-8"), function(x) x[1]),
+#                                                           encoding = "UTF-8"), function(x) x[1]),
 #                               groupName = sapply(fromJSON(urlGrp,
-#                                   encoding = "UTF-8"), function(x) x[2]),
-#                               stringsAsFactors = FALSE))[-1, ]
-
-groupCode = unique(data.frame(groupCode = sapply(fromJSON(urlGrp,
-                                                          encoding = "UTF-8"), function(x) x[1]),
-                              groupName = sapply(fromJSON(urlGrp,
-                                                          encoding = "UTF-8"), function(x) x[2]),
-                              stringsAsFactors = FALSE))
-
-
-urlDom = "http://fenix.fao.org/wds/rest/domains/faostat2/Q/en"
-
-# ## The wds call is different to the rest, so the first row is removed.
+#                                                           encoding = "UTF-8"), function(x) x[2]),
+#                               stringsAsFactors = FALSE))
+# 
+# 
+# urlDom = "http://fenix.fao.org/wds/rest/domains/faostat2/Q/en"
+# 
+# # ## The wds call is different to the rest, so the first row is removed.
+# # base = data.frame()
+# # for(i in 1:NROW(groupCode)){
+# #     tmp = fromJSON(paste("http://fenix.fao.org/wds/rest/domains/faostat2/",
+# #         groupCode[i, "groupCode"], "/en", sep = ""), encoding = "UTF-8")
+# #     tmp2 = unique(data.frame(groupCode = groupCode[i, "groupCode"],
+# #                              domainCode = sapply(tmp, function(x) x[1]),
+# #                              domainName = sapply(tmp, function(x) x[2]),
+# #                   stringsAsFactors = FALSE))[-1, ]
+# #     base = rbind(base, tmp2)
+# # }
+# # domainCode = base
+# ## NOTE (FILIPPO): removing the first row we remove Crops
 # base = data.frame()
 # for(i in 1:NROW(groupCode)){
-#     tmp = fromJSON(paste("http://fenix.fao.org/wds/rest/domains/faostat2/",
-#         groupCode[i, "groupCode"], "/en", sep = ""), encoding = "UTF-8")
-#     tmp2 = unique(data.frame(groupCode = groupCode[i, "groupCode"],
-#                              domainCode = sapply(tmp, function(x) x[1]),
-#                              domainName = sapply(tmp, function(x) x[2]),
-#                   stringsAsFactors = FALSE))[-1, ]
-#     base = rbind(base, tmp2)
+#   tmp = fromJSON(paste("http://fenix.fao.org/wds/rest/domains/faostat2/",
+#                        groupCode[i, "groupCode"], "/en", sep = ""), encoding = "UTF-8")
+#   tmp2 = unique(data.frame(groupCode = groupCode[i, "groupCode"],
+#                            domainCode = sapply(tmp, function(x) x[1]),
+#                            domainName = sapply(tmp, function(x) x[2]),
+#                            stringsAsFactors = FALSE))
+#   base = rbind(base, tmp2)
 # }
 # domainCode = base
-## NOTE (FILIPPO): removing the first row we remove Crops
-base = data.frame()
-for(i in 1:NROW(groupCode)){
-  tmp = fromJSON(paste("http://fenix.fao.org/wds/rest/domains/faostat2/",
-                       groupCode[i, "groupCode"], "/en", sep = ""), encoding = "UTF-8")
-  tmp2 = unique(data.frame(groupCode = groupCode[i, "groupCode"],
-                           domainCode = sapply(tmp, function(x) x[1]),
-                           domainName = sapply(tmp, function(x) x[2]),
-                           stringsAsFactors = FALSE))
-  base = rbind(base, tmp2)
-}
-domainCode = base
-
-
-base = data.frame()
-for(i in 1:NROW(domainCode)){
-   tmp = try(fromJSON(paste("http://fenix.fao.org/bletchley/rest/codes/items/faostat2/",
-     domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
-     if(!inherits(tmp, "try-error")){
-        tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],
-                                 itemCode = sapply(tmp, function(x) x[1]),
-                                 itemName = sapply(tmp, function(x) x[2]),
-                      stringsAsFactors = FALSE))
-        base = rbind(base, tmp2)
-     } 
-}
-itemCode = base
-
-
-base = data.frame()
-for(i in 1:NROW(domainCode)){
-    tmp = try(fromJSON(paste("http://fenix.fao.org/bletchley/rest/codes/itemsaggregated/faostat2/",
-      domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
-    if(!inherits(tmp, "try-error")){
-        tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],
-                                 itemCode = sapply(tmp, function(x) x[1]),
-                                 itemName = sapply(tmp, function(x) x[2]),
-                      stringsAsFactors = FALSE))
-        base = rbind(base, tmp2)
-    } 
-}
-itemAggCode = base
-
-
-base = data.frame()
-for(i in 1:NROW(domainCode)){
-    tmp = try(fromJSON(paste("http://fenix.fao.org/bletchley/rest/codes/elements/faostat2/",
-      domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
-    if(!inherits(tmp, "try-error")){
-        tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],
-                                 elementCode = sapply(tmp, function(x) x[1]),
-                                 elementName = sapply(tmp, function(x)
-                                     paste0(x[2], "(", x[3], ")")),
-                      stringsAsFactors = FALSE))
-        base = rbind(base, tmp2)
-    }
-}
-elemCode = base
-
-FAOmetaTable = list(groupTable = groupCode, domainTable = domainCode,
-                    itemTable = itemCode, itemAggTable = itemAggCode,
-                    elementTable = elemCode)
-
-## Save
-save(FAOmetaTable, file = "FAOmetaTable.RData")
+# 
+# 
+# base = data.frame()
+# for(i in 1:NROW(domainCode)){
+#    tmp = try(fromJSON(paste("http://fenix.fao.org/bletchley/rest/codes/items/faostat2/",
+#      domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
+#      if(!inherits(tmp, "try-error")){
+#         tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],
+#                                  itemCode = sapply(tmp, function(x) x[1]),
+#                                  itemName = sapply(tmp, function(x) x[2]),
+#                       stringsAsFactors = FALSE))
+#         base = rbind(base, tmp2)
+#      } 
+# }
+# itemCode = base
+# 
+# 
+# base = data.frame()
+# for(i in 1:NROW(domainCode)){
+#     tmp = try(fromJSON(paste("http://fenix.fao.org/bletchley/rest/codes/itemsaggregated/faostat2/",
+#       domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
+#     if(!inherits(tmp, "try-error")){
+#         tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],
+#                                  itemCode = sapply(tmp, function(x) x[1]),
+#                                  itemName = sapply(tmp, function(x) x[2]),
+#                       stringsAsFactors = FALSE))
+#         base = rbind(base, tmp2)
+#     } 
+# }
+# itemAggCode = base
+# 
+# 
+# base = data.frame()
+# for(i in 1:NROW(domainCode)){
+#     tmp = try(fromJSON(paste("http://fenix.fao.org/bletchley/rest/codes/elements/faostat2/",
+#       domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
+#     if(!inherits(tmp, "try-error")){
+#         tmp2 = unique(data.frame(domainCode = domainCode[i, "domainCode"],
+#                                  elementCode = sapply(tmp, function(x) x[1]),
+#                                  elementName = sapply(tmp, function(x)
+#                                      paste0(x[2], "(", x[3], ")")),
+#                       stringsAsFactors = FALSE))
+#         base = rbind(base, tmp2)
+#     }
+# }
+# elemCode = base
+# 
+# FAOmetaTable = list(groupTable = groupCode, domainTable = domainCode,
+#                     itemTable = itemCode, itemAggTable = itemAggCode,
+#                     elementTable = elemCode)
+# 
+# ## Save
+# save(FAOmetaTable, file = "FAOmetaTable.RData")
 
 
 
