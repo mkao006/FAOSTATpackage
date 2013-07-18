@@ -30,15 +30,10 @@ geogr = function(x, n = 1){
       geogr = rep(NA, T)
       warning("Time series does not have sufficient values")
     } else {
-      if(sum(is.na(x[firstObs:T])) > 0.5 * (T - firstObs + 1)){
-        geogr = rep(NA, T)
-        warning("Over 50% of the data are missing")
-      } else {
-        geogr = double(T)
-        geogr[1:(firstObs + n - 1)] = NA
-        geogr[(firstObs + n):T] = ((x[(firstObs + n):T]/
-                                    x[firstObs:(T - n)])^(1/n) - 1) * 100 
-      }
+      geogr = double(T)
+      geogr[1:(firstObs + n - 1)] = NA
+      geogr[(firstObs + n):T] = ((x[(firstObs + n):T]/
+                                  x[firstObs:(T - n)])^(1/n) - 1) * 100 
     }
   }
   geogr
