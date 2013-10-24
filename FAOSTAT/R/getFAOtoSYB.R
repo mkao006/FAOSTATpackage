@@ -13,6 +13,8 @@
 ##' @param useCHMT logical, whether the CHMT function should be
 ##' @param outputFormat The format of the data, can be 'long' or 'wide'.
 ##' appied to avoid double counting of China.
+##' @param returnFlags, Logical, whether the flags should be
+##' returned. Only work with outputFormat long. 
 ##'
 ##' @return A list containing the following elements
 ##' \describe{
@@ -29,9 +31,9 @@
 ##' ## arlLand.lst = getFAOtoSYB()
 
 getFAOtoSYB = function(name = NULL, domainCode = "RL",
-                       elementCode = 5110, itemCode = 6621, query,
-                       printURL = FALSE, productionDB = FALSE,
-                       useCHMT = TRUE, outputFormat = c("wide", "long")){
+    elementCode = 5110, itemCode = 6621, query, printURL = FALSE,
+    productionDB = FALSE, useCHMT = TRUE,
+    outputFormat = c("wide", "long"), returnFlags = FALSE){
     outputFormat = match.arg(outputFormat)
 
     if(!missing(query)){

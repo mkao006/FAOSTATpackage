@@ -5,7 +5,7 @@
   getFAOtoSYB(name = NULL, domainCode = "RL",
     elementCode = 5110, itemCode = 6621, query,
     printURL = FALSE, productionDB = FALSE, useCHMT = TRUE,
-    outputFormat = c("wide", "long"))
+    outputFormat = c("wide", "long"), returnFlags = FALSE)
 }
 \arguments{
   \item{name}{The name to be given to the variable.}
@@ -32,6 +32,9 @@
 
   \item{outputFormat}{The format of the data, can be 'long'
   or 'wide'. appied to avoid double counting of China.}
+
+  \item{returnFlags,}{Logical, whether the flags should be
+  returned. Only work with outputFormat long.}
 }
 \value{
   A list containing the following elements \describe{
