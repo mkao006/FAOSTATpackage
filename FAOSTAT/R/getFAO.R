@@ -16,8 +16,10 @@
 ##' @param useCHMT logical, whether the CHMT function should be
 ##' applied to avoid double counting of China.
 ##' @param outputFormat The format of the data, can be 'long' or 'wide'.
-##' @param returnNames Logical: should the area, the element and the
+##' @param returnNames Logical, should the area, the element and the
 ##' item names be reported?.
+##' @param returnFlags, Logical, whether the flags should be
+##' returned. Only work with outputFormat long.
 ##' @return Outputs a data frame containing the specified data
 ##' @export
 ##'
@@ -28,8 +30,10 @@
 ## NOTE(Michael): Maybe change input from csv to json.
 
 getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
-                  itemCode = 6621, query, printURL = FALSE, productionDB = FALSE,
-                  useCHMT = TRUE, outputFormat = "wide", returnNames = FALSE){
+    itemCode = 6621, query, printURL = FALSE, productionDB = FALSE,
+    useCHMT = TRUE, outputFormat = "wide", returnNames = FALSE,
+    returnFlags = FALSE){
+
     if(!missing(query)){
         if(NROW(query) > 1)
             stop("Use 'getFAOtoSYB' for batch download")
@@ -53,26 +57,35 @@ getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
 #         base = "http://ldvapp07.fao.org:8032/wds/api?"
 
         database = "db=faostatprod&"
-        selection = "select=D.AreaCode[FAOST_CODE],D.Year[Year],D.Value[Value],&from=data[D],element[E]&"
-        condition = paste("where=D.elementcode(", elementCode, "),D.itemcode(",
-        itemCode, "),D.domaincode('", domainCode, "')", sep = "")
+        selection = "select=D.AreaCode[FAOST_CODE],D.Year[Year],D.Value[Value]"
+        from = "&from=data[D],element[E]&"
+        condition = paste0("where=D.elementcode(", elementCode, "),D.itemcode(",
+            itemCode, "),D.domaincode('", domainCode, "')")
         join = ",JOIN(D.elementcode:E.elementcode)&orderby=E.elementnamee,D.year"
     } else {
         base = "http://fenix.fao.org/wds/api?"
         database = "db=faostat2&"
-        if (returnNames) {
-          selection = "select=A.AreaCode[FAOST_CODE],A.AreaNameE[AreaName],E.elementnamee[ElementName],I.itemnamee[ItemName],D.year[Year],D.value[Value]&from=data[D],element[E],item[I],area[A]&"
-        } else {
-          selection = "select=A.AreaCode[FAOST_CODE],D.year[Year],D.value[Value]&from=data[D],element[E],item[I],area[A]&"
-        }
-        condition = paste("where=D.elementcode(", elementCode, "),D.itemcode(",
-        itemCode, "),D.domaincode('", domainCode, "')", sep = "")
+        selection = "select=A.AreaCode[FAOST_CODE],D.year[Year],D.value[Value]"
+        from = "&from=data[D],element[E],item[I],area[A]&"
+        condition = paste0("where=D.elementcode(", elementCode, "),D.itemcode(",
+            itemCode, "),D.domaincode('", domainCode, "')")
         join = ",JOIN(D.elementcode:E.elementcode),JOIN(D.itemcode:I.itemcode),JOIN(D.areacode:A.areacode)&orderby=E.elementnamee,D.year"
     }
 
+    
+    if(returnFlags){
+        outputFormat = "long"
+        selection = paste0(selection, ",D.Flag[Flags]")
+    }
+    
+    if(returnNames)
+        selection = paste0(selection, "A.AreaNameE[AreaName],E.elementnamee[ElementName],I.itemnamee[ItemName]")
+    
+    
     out = "out=csv&"
-    url = paste(base, out, database, selection, condition, join, sep = "")
-    if(printURL) print(url)
+    url = paste0(base, out, database, selection, from, condition, join)
+    if(printURL)
+        print(url)
 
     faoData = read.csv(file = url, stringsAsFactors = FALSE)
     ## while(inherits(faoData, "try-error")){
