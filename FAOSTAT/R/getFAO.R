@@ -51,10 +51,10 @@ getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
         name = paste(domainCode, itemCode, elementCode, sep = "_")
 
     if(productionDB){
-        base = "http://ldvapp07.fao.org:8030/wds/api?"
+#         base = "http://ldvapp07.fao.org:8030/wds/api?"
 #         base = "http://lprapp16.fao.org:4012/wds/api?"
 #         base = "http://lprapp16.fao.org/wds/api?"
-#         base = "http://ldvapp07.fao.org:8032/wds/api?"
+        base = "http://ldvapp07.fao.org:8032/wds/api?"
 
         database = "db=faostatproddiss&"
         selection = "select=D.AreaCode[FAOST_CODE],D.Year[Year],D.Value[Value]"
