@@ -35,6 +35,8 @@ getFAOtoSYB = function(name = NULL, domainCode = "RL",
     productionDB = FALSE, useCHMT = TRUE,
     outputFormat = c("wide", "long"), returnFlags = FALSE){
     outputFormat = match.arg(outputFormat)
+    if(returnFlags)
+        outputFormat = "long"
     
     if(!missing(query)){
         domainCode = query$domainCode

@@ -56,7 +56,7 @@ getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
 #         base = "http://lprapp16.fao.org/wds/api?"
 #         base = "http://ldvapp07.fao.org:8032/wds/api?"
 
-        database = "db=faostatprod&"
+        database = "db=faostatproddiss&"
         selection = "select=D.AreaCode[FAOST_CODE],D.Year[Year],D.Value[Value]"
         from = "&from=data[D],element[E]&"
         condition = paste0("where=D.elementcode(", elementCode, "),D.itemcode(",
