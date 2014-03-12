@@ -1,4 +1,0 @@
-%\VignetteIndexEntry{General Manual}
-\documentclass{article}
-\begin{document}
-\end{document}

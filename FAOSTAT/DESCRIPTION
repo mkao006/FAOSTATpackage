@@ -2,7 +2,7 @@ Package: FAOSTAT
 Type: Package
 Title: A complementary package to the FAOSTAT database and the Statistical
     Yearbook of the Food and Agricultural Organization of the United Nations.
-Version: 1.5
+Version: 1.6
 Date: 2013-07-01
 Authors@R: c(person("Micheal. C. J.", "Kao", role = c("aut", "cre"), email =
     "michael.kao@fao.org"), person("Markus", "Gesmann", rol = "ctb", comment =
@@ -45,8 +45,8 @@ Collate:
     'geogr.R'
     'getFAO.R'
     'getFAOtoSYB.R'
-    'getWDI.R'
     'getWDImetaData.R'
+    'getWDI.R'
     'getWDItoSYB.R'
     'grConstruct.R'
     'indConstruct.R'
@@ -55,7 +55,7 @@ Collate:
     'overlap.R'
     'printLab.R'
     'shConstruct.R'
-    'sparsity.R'
     'sparsityHeatMap.R'
+    'sparsity.R'
     'translateCountryCode.R'
     'tsPanel.R'

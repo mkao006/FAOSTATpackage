@@ -165,6 +165,7 @@ file.copy(from = "./FAOmetaTable.RData",
           to = "FAOSTAT/data/", overwrite = TRUE)
 file.copy(from = "./DESCRIPTION", to = "FAOSTAT/",
           overwrite = TRUE)
+unlink("./FAOSTAT/Read\\-and\\-delete\\-me")
 
 ## Include Demo
 dir.create("FAOSTAT/demo")
@@ -175,16 +176,20 @@ cat("FAOSTATdemo      Demonstration for the FAOSTAT package\n",
 
 ## Use roxygen to build the documentation
 roxygenize("FAOSTAT")
+## file.copy(from = "./CITATION", to = "FAOSTAT/inst/CITATION",
+##           overwrite = TRUE)
+unlink("./FAOSTAT/inst/", recursive = TRUE)
 
 ## Include vignette
-dir.create("./FAOSTAT/inst/doc/")
+dir.create("./FAOSTAT/vignettes/")
 file.copy(from = "./Documentation/FAOSTAT.pdf",
-          to = "./FAOSTAT/inst/doc/", overwrite = TRUE)
+          to = "./FAOSTAT/vignettes/", overwrite = TRUE)
+
 
 ## Create the vignette hack from (http://yihui.name/knitr/demo/vignette/)
 ## This is not required for R 3.0.0
-cat("%\\VignetteIndexEntry{General Manual}\n\\documentclass{article}\n\\begin{document}\n\\end{document}",
-    file = "./FAOSTAT/inst/doc/FAOSTAT.Rnw")
+## cat("%\\VignetteIndexEntry{General Manual}\n\\documentclass{article}\n\\begin{document}\n\\end{document}",
+##     file = "./FAOSTAT/inst/doc/FAOSTAT.Rnw")
 
 ## Build and check the package
 system("R CMD INSTALL --build FAOSTAT")
