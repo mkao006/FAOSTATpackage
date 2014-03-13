@@ -3,11 +3,8 @@ Type: Package
 Title: A complementary package to the FAOSTAT database and the Statistical
     Yearbook of the Food and Agricultural Organization of the United Nations.
 Version: 1.6
-Date: 2013-07-01
-Authors@R: c(person("Micheal. C. J.", "Kao", role = c("aut", "cre"), email =
-    "michael.kao@fao.org"), person("Markus", "Gesmann", rol = "ctb", comment =
-    "Author of getWDI"), person("Filippo", "Gheri", rol = "ctb"))
-Author: Michael C. J. Kao <michael.kao@fao.org>
+Date: 2014-03-13
+Author: Michael C. J. Kao <michael.kao@fao.org>, Markus Gesmann, Filippo Gheri
 Maintainer: Michael C. J. Kao <michael.kao@fao.org>
 Description: The package hosts a list of functions to download, manipulate,
     construct and aggregate agricultural statistics provided by the FAOSTAT

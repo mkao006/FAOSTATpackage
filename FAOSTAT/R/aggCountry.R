@@ -29,6 +29,7 @@
 ##'
 ##' @seealso \code{\link{aggRegion}}
 ##' @export
+##' 
 
 aggCountry = function(aggVar, weightVar = rep(1, length(aggVar)),
     year = "Year", data,
