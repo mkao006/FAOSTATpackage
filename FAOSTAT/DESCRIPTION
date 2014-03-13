@@ -10,17 +10,16 @@ Description: The package hosts a list of functions to download, manipulate,
     construct and aggregate agricultural statistics provided by the FAOSTAT
     database of the Food and Agricultural Organization of the United Nations.
 URL: https://github.com/mkao006/FAOSTATpackage
-License: GPL (>= 2)
-Depends:
+Imports:
     RJSONIO (>= 0.96-0),
     plyr (>= 1.7.1),
-    reshape2 (>= 1.2.1),
     data.table (>= 1.8.2),
     MASS (>= 7.3-22),
     classInt (>= 0.1-19),
     ggplot2 (>= 0.9.3),
     labeling (>= 0.1),
     scales (>= 0.2.3)
+License: GPL (>= 2)
 LazyData: yes
 ZipData: no
 Collate:
