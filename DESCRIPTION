@@ -2,8 +2,8 @@ Package: FAOSTAT
 Type: Package
 Title: A complementary package to the FAOSTAT database and the Statistical
     Yearbook of the Food and Agricultural Organization of the United Nations.
-Version: 1.6
-Date: 2014-03-13
+Version: 1.7
+Date: 2014-05-29
 Author: Michael C. J. Kao <michael.kao@fao.org>, Markus Gesmann, Filippo Gheri
 Maintainer: Michael C. J. Kao <michael.kao@fao.org>
 Description: The package hosts a list of functions to download, manipulate,

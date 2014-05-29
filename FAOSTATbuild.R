@@ -25,11 +25,8 @@ FAOcountryProfile = tmp[, cty]
 ## Save
 save(FAOcountryProfile, file = "FAOcountryProfile.RData")
 
-
-
 ## FAOregionProfile data
 ## ---------------------------------------------------------------------
-
 
 ## Sort and select column names by class
 FAOregionProfile = tmp[, c("FAOST_CODE", "UN_CODE",
@@ -37,8 +34,6 @@ FAOregionProfile = tmp[, c("FAOST_CODE", "UN_CODE",
 
 ## Save
 save(FAOregionProfile, file = "FAOregionProfile.RData")
-
-
 
 # ## FAOmetaTable
 # ## ---------------------------------------------------------------------
@@ -181,9 +176,10 @@ roxygenize("FAOSTAT")
 unlink("./FAOSTAT/inst/", recursive = TRUE)
 
 ## Include vignette
-dir.create("./FAOSTAT/vignettes/")
+# dir.create("./FAOSTAT/vignettes/")
+dir.create("./FAOSTAT/inst/doc/")
 file.copy(from = "./Documentation/FAOSTAT.pdf",
-          to = "./FAOSTAT/vignettes/", overwrite = TRUE)
+          to = "./FAOSTAT/inst/doc/", overwrite = TRUE)
 
 
 ## Create the vignette hack from (http://yihui.name/knitr/demo/vignette/)
