@@ -14,8 +14,18 @@ library(utils)
 ## ---------------------------------------------------------------------
 
 tmp = read.csv(file = "FAOcountryProfileUTF8.csv", header = TRUE,
-    stringsAsFactors = FALSE, na.string = "", encoding = "UTF-8")
+    stringsAsFactors = FALSE, na.string = "", encoding = "UTF-8")#
 tmp[tmp == " "] = NA
+# tmp[tmp[, "FAOST_CODE"] == "284" & !is.na(tmp[, "FAOST_CODE"]), 
+#     "FAO_TABLE_NAME"] = "<c5>land Islands"
+# tmp[tmp[, "FAOST_CODE"] == "107" & !is.na(tmp[, "FAOST_CODE"]), 
+#     "FAO_TABLE_NAME"] = "C<f4>te d'Ivoire"
+# tmp[tmp[, "FAOST_CODE"] == "279" & !is.na(tmp[, "FAOST_CODE"]), 
+#     "FAO_TABLE_NAME"] = "Cura<e7>ao"
+# tmp[tmp[, "FAOST_CODE"] == "182" & !is.na(tmp[, "FAOST_CODE"]), 
+#     "FAO_TABLE_NAME"] = "R<e9>union"
+# tmp[tmp[, "FAOST_CODE"] == "282" & !is.na(tmp[, "FAOST_CODE"]), 
+#     "FAO_TABLE_NAME"] = "Saint Barth<e9>lemy"
 
 ## Sort and select column names by class
 cty = grep("_CODE$|_NAME$", colnames(tmp), value = TRUE)
