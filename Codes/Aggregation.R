@@ -41,6 +41,9 @@
 ##' @param keepUnspecified Whether countries with unspecified region
 ##' should be aggregated into an "Unspecified" group or simply
 ##' drop. Default to create the new group.
+##' @param rulesByAgg Logical, specifies whether the 
+##' \code{thresholdProp} and \code{thresholdCountry} rules have to
+##' be applied by aggregate or by world.
 ##'
 ##' @export
 ##' @examples
@@ -64,154 +67,209 @@ Aggregation =
            keepUnspecified = TRUE, unspecifiedCode = 0, 
            thresholdProp = rep(0.65, length(aggVar)), 
            thresholdCountry = rep(15, length(aggVar)),
-           applyRules = c(TRUE, FALSE)) {
-  
-  ## Obtain the name of the relationships
-  inCode = colnames(relationDF)[1]
-  outCode = colnames(relationDF)[2]
-  colnames(relationDF) = c("inCode", "outCode")
-  
-  ## Checks
-  if(!all(unique(data[, inCode]) %in% relationDF[, "inCode"]))
-    stop("Not all entries are matched with a relationship")
-  if(!(inCode %in% colnames(data)))
-    stop("Input code in relationship data frame not found in data")
-  if(!all(identical(length(aggVar), length(aggMethod)),
-          identical(length(aggVar), length(weightVar)),
-          identical(length(aggVar), length(thresholdProp)),
-          identical(length(aggVar), length(thresholdCountry))))
-    stop("length of aggVar, aggMethod and weightVar are not all equal")
-  if(any(is.na(weightVar[which(aggMethod == "weighted.mean")])))
-    stop("Weighting variable missing for some variable")
-  
-  ## Subset the data to compute aggregates variables in the data, still
-  ## a problem if the weighted variable is not in the data.
-  ind = which(aggVar %in% colnames(data))
-  aggVar = aggVar[ind]
-  aggMethod = aggMethod[ind]
-  weightVar = weightVar[ind]
-  thresholdProp = thresholdProp[ind]
-  thresholdCountry = thresholdCountry[ind]
-  
-  ## Merge the data with the relation data
-  raw.dt = data.table(merge(x = relationDF, y = data, by.x = "inCode",
-                            by.y = inCode, all.y = TRUE), equalWeight = 1)
-  ## keys = c("inCode", year)
-  setkeyv(raw.dt, c("inCode", year))
-  
-  n.var = length(aggVar)
-  weightVar[is.na(weightVar)] = "equalWeight"
-  
-  if(keepUnspecified){
-    ## Check the unspecified code and the outputcode
-    if(typeof(relationDF[, "outCode"]) != typeof(unspecifiedCode))
-      stop("The type of output code and unspecified code need to be the same")
-    Unspecified = raw.dt[is.na(outCode), inCode]
-    raw.dt[is.na(outCode), outCode := unspecifiedCode]
-  } else {
-    raw.dt = subset(raw.dt, !is.na(outCode))
-  }
-  
-  final = unique(raw.dt[, c("outCode", year), with = FALSE])
-  setkeyv(final, c("outCode", year))
-  
-  foo = function(x, w, FUN){
-    w[is.na(w)] = 0
-    switch(FUN,
-           sum = {tmp = sum(x, na.rm = any(!is.na(x)))},
-           mean = {tmp = mean(x, na.rm = TRUE)},
-           weighted.mean = {
-             if (length(w) == 1) w = 1
-             tmp = weighted.mean(x, w, na.rm = TRUE)}
-    )
-    as.numeric(tmp)
-  }
-  
-  printLab(paste("Computing Aggregation for ", length(aggVar),
-                 " variables", sep = ""))
-  pb = txtProgressBar(min = 0, max = n.var, style = 3)
-  if (applyRules) {
-    for(i in 1:n.var){
-      if(aggMethod[i] == "discard"){
-        tmp = subset(raw.dt, select = c("outCode", year, aggVar[i]),
-                     subset = inCode == outCode)
+           applyRules = c(TRUE, FALSE), rulesByAgg = c(TRUE, FALSE)) {
+    
+    ## Obtain the name of the relationships
+    inCode = colnames(relationDF)[1]
+    outCode = colnames(relationDF)[2]
+    colnames(relationDF) = c("inCode", "outCode")
+    
+    ## Checks
+    if(!all(unique(data[, inCode]) %in% relationDF[, "inCode"]))
+      stop("Not all entries are matched with a relationship")
+    if(!(inCode %in% colnames(data)))
+      stop("Input code in relationship data frame not found in data")
+    if(!all(identical(length(aggVar), length(aggMethod)),
+            identical(length(aggVar), length(weightVar)),
+            identical(length(aggVar), length(thresholdProp)),
+            identical(length(aggVar), length(thresholdCountry))))
+      stop("length of aggVar, aggMethod and weightVar are not all equal")
+    if(any(is.na(weightVar[which(aggMethod == "weighted.mean")])))
+      stop("Weighting variable missing for some variable")
+    
+    ## Subset the data to compute aggregates variables in the data, still
+    ## a problem if the weighted variable is not in the data.
+    ind = which(aggVar %in% colnames(data))
+    aggVar = aggVar[ind]
+    aggMethod = aggMethod[ind]
+    weightVar = weightVar[ind]
+    thresholdProp = thresholdProp[ind]
+    thresholdCountry = thresholdCountry[ind]
+    
+    ## Merge the data with the relation data
+    raw.dt = data.table(merge(x = relationDF, y = data, by.x = "inCode",
+                              by.y = inCode, all.y = TRUE), equalWeight = 1)
+    ## keys = c("inCode", year)
+    setkeyv(raw.dt, c("inCode", year))
+    
+    n.var = length(aggVar)
+    weightVar[is.na(weightVar)] = "equalWeight"
+    
+    if(keepUnspecified){
+      ## Check the unspecified code and the outputcode
+      if(typeof(relationDF[, "outCode"]) != typeof(unspecifiedCode))
+        stop("The type of output code and unspecified code need to be the same")
+      Unspecified = raw.dt[is.na(outCode), inCode]
+      raw.dt[is.na(outCode), outCode := unspecifiedCode]
+    } else {
+      raw.dt = subset(raw.dt, !is.na(outCode))
+    }
+    
+    final = unique(raw.dt[, c("outCode", year), with = FALSE])
+    setkeyv(final, c("outCode", year))
+    
+    foo = function(x, w, FUN){
+      w[is.na(w)] = 0
+      switch(FUN,
+             sum = {tmp = sum(x, na.rm = any(!is.na(x)))},
+             mean = {tmp = mean(x, na.rm = TRUE)},
+             weighted.mean = {
+               if (length(w) == 1) w = 1
+               tmp = weighted.mean(x, w, na.rm = TRUE)}
+      )
+      as.numeric(tmp)
+    }
+    foo2 = function(x){
+      sum(is.na(x))
+    }
+    
+    printLab(paste("Computing Aggregation for ", length(aggVar),
+                   " variables", sep = ""))
+    pb = txtProgressBar(min = 0, max = n.var, style = 3)
+    if (applyRules) {
+      if (rulesByAgg) {
+        ## The rules are applied at aggregate level
+        for(i in 1:n.var){
+          if(aggMethod[i] == "discard"){
+            tmp = subset(raw.dt, select = c("outCode", year, aggVar[i]),
+                         subset = inCode == outCode)
+            setkeyv(tmp, c("outCode", year))
+            final = merge(x = final, y = tmp, all.x = TRUE)
+            setTxtProgressBar(pb, i)
+          } else {
+            base = data.table()
+            for (z in unique(raw.dt$outCode)) {
+#               if(!all(is.na(raw.dt[raw.dt[, outCode] == z, aggVar[i], with = FALSE]))){
+                ## It does not make sense to apply the thresholdCountry
+                ## rule if we are working by aggregate. Different aggregates
+                ## have different number of countries, thus should have 
+                ## different thresholdCountry.
+                for(j in unique(raw.dt$Year)){
+                  ## Aggregation should only be performed if sufficient countries
+                  ## reported data.
+                  if(sum(is.na(raw.dt[Year == j & raw.dt[, outCode] == z, aggVar[i], with = FALSE] *
+                                 raw.dt[Year == j & raw.dt[, outCode] == z, weightVar[i], with = FALSE])) <=
+                       (1 - thresholdProp[i]) * NROW(raw.dt[Year == j & raw.dt[, outCode] == z, aggVar[i], with = FALSE])){
+                    tmp = raw.dt[Year == j & raw.dt[, outCode] == z,
+                                 foo(x = get(aggVar[i]), w = get(weightVar[i]),
+                                     FUN = aggMethod[i]), by = outCode]
+                    tmp[, Year := j]
+                  } else {
+                    tmp = unique(raw.dt[Year == j & raw.dt[, outCode] == z, "outCode", with = FALSE])
+                    tmp[, V1 := as.numeric(NA)]
+                    tmp[, Year := j]
+                  }
+                  base = rbind(base, tmp)
+                }
+#               } else {
+#                 base = unique(raw.dt[, c("outCode", year), with = FALSE])
+#                 base[, V1 := as.numeric(NA)]
+#               }
+            }
+            setkeyv(base, c("outCode", year))
+            setnames(base, "V1", aggVar[i])
+            final = merge(x = final, y = base, all.x = TRUE)
+            setTxtProgressBar(pb, i)
+          }
+        }
+      } else {
+        ## The rules are applied at world level
+        for(i in 1:n.var){
+          if(aggMethod[i] == "discard"){
+            tmp = subset(raw.dt, select = c("outCode", year, aggVar[i]),
+                         subset = inCode == outCode)
+            setkeyv(tmp, c("outCode", year))
+            final = merge(x = final, y = tmp, all.x = TRUE)
+            setTxtProgressBar(pb, i)
+          } else {
+            base = data.table()
+            if(!all(is.na(raw.dt[, aggVar[i], with = FALSE]))){
+              
+              ## Aggregation should only be performed on years which have
+              ## comparable number of countries.
+              tmp.dt = 
+                raw.dt[, c("outCode", year, aggVar[i], weightVar[i]), with = FALSE]
+              #           tmp.dt[, nc := sum(is.na(aggVar[i])), by = Year] ## Not working, not evaluating aggVar[i]
+              #           tmp.dt[, nc := sum(is.na(get(aggVar[i]))), by = Year]
+              tmp.dt = tmp.dt[, lapply(.SD, foo2), by = c(year), 
+                              .SDcols = c(aggVar[i])]
+              setnames(tmp.dt, c(year, "nc"))
+              tmp.dt = tmp.dt[tmp.dt$nc <= min(tmp.dt$nc) + thresholdCountry[i], ]
+              #           rangeYears = 
+              #             range(na.omit(raw.dt[, c(year, aggVar[i]),
+              #                                  with = FALSE])[, year, with = FALSE])
+              for(j in tmp.dt$Year){
+                ## Aggregation should only be performed if sufficient countries
+                ## reported data.
+                if(sum(is.na(raw.dt[Year == j, aggVar[i], with = FALSE] *
+                               raw.dt[Year == j, weightVar[i], with = FALSE])) <=
+                     (1 - thresholdProp[i]) * NROW(raw.dt[Year == j, aggVar[i],
+                                                          with = FALSE])){
+                  tmp = raw.dt[Year == j,
+                               foo(x = get(aggVar[i]), w = get(weightVar[i]),
+                                   FUN = aggMethod[i]), by = outCode]
+                  tmp[, Year := j]
+                } else {
+                  tmp = unique(raw.dt[Year == j, "outCode", with = FALSE])
+                  tmp[, V1 := as.numeric(NA)]
+                  tmp[, Year := j]
+                }
+                base = rbind(base, tmp)
+              }
+            } else {
+              base = unique(raw.dt[, c("outCode", year), with = FALSE])
+              base[, V1 := as.numeric(NA)]
+            }
+            setkeyv(base, c("outCode", year))
+            setnames(base, "V1", aggVar[i])
+            final = merge(x = final, y = base, all.x = TRUE)
+            setTxtProgressBar(pb, i)
+          }
+        }
+      }
+    } else {
+      ## No rule is applied
+      for(i in 1:n.var){
+        if(aggMethod[i] == "discard"){
+          ## In case the aggregation method is not specify, I just want
+          ## to take those countries with inCode == outCode. These would
+          ## correspond to the mother countries in case of aggregation at
+          ## territorial level and to nothing in case of aggregation to 
+          ## regional level
+          tmp = subset(raw.dt, select = c("outCode", year, aggVar[i]),
+                       subset = inCode == outCode)
+        } else {
+          tmp = 
+            raw.dt[, foo(x = get(aggVar[i]), w = get(weightVar[i]), 
+                         FUN = aggMethod[i]), 
+                   by = eval(paste("outCode", ",Year", sep = ""))]
+          setnames(tmp, "V1", aggVar[i])
+        }
         setkeyv(tmp, c("outCode", year))
         final = merge(x = final, y = tmp, all.x = TRUE)
         setTxtProgressBar(pb, i)
-      } else {
-        base = data.table()
-        if(!all(is.na(raw.dt[, aggVar[i], with = FALSE]))){
-          
-          ## Aggregation should only be performed on years which have
-          ## comparable number of countries.
-          tmp.dt = 
-            raw.dt[, c("outCode", year, aggVar[i], weightVar[i]), with = FALSE]
-          tmp.dt[, nc := sum(is.na(aggVar[i])), by = Year]
-          tmp.dt = tmp.dt[tmp.dt$nc >= max(tmp.dt$nc) - thresholdCountry[i], ]
-          rangeYears = 
-            range(na.omit(raw.dt[, c(year, aggVar[i]),
-                                 with = FALSE])[, year, with = FALSE])
-          for(j in rangeYears[1]:rangeYears[2]){
-            ## Aggregation should only be performed if sufficient countries
-            ## reported data.
-            if(sum(is.na(raw.dt[Year == j, aggVar[i], with = FALSE] *
-                           raw.dt[Year == j, weightVar[i], with = FALSE])) <=
-                 (1 - thresholdProp[i]) * NROW(raw.dt[Year == j, aggVar[i],
-                                                      with = FALSE])){
-              tmp = raw.dt[Year == j,
-                           foo(x = get(aggVar[i]), w = get(weightVar[i]),
-                               FUN = aggMethod[i]), by = outCode]
-              tmp[, Year := j]
-            } else {
-              tmp = unique(raw.dt[Year == j, "outCode", with = FALSE])
-              tmp[, V1 := as.numeric(NA)]
-              tmp[, Year := j]
-            }
-            base = rbind(base, tmp)
-          }
-        } else {
-          base = unique(raw.dt[, c("outCode", year), with = FALSE])
-          base[, V1 := as.numeric(NA)]
-        }
-        setkeyv(base, c("outCode", year))
-        setnames(base, "V1", aggVar[i])
-        final = merge(x = final, y = base, all.x = TRUE)
-        setTxtProgressBar(pb, i)
       }
     }
-  } else {
-    for(i in 1:n.var){
-      if(aggMethod[i] == "discard"){
-        ## In case the aggregation method is not specify, I just want
-        ## to take those countries with inCode == outCode. These would
-        ## correspond to the mother countries in case of aggregation at
-        ## territorial level and to nothing in case of aggregation to 
-        ## regional level
-        tmp = subset(raw.dt, select = c("outCode", year, aggVar[i]),
-                     subset = inCode == outCode)
-        setkeyv(tmp, c("outCode", year))
-      } else {
-        tmp = 
-          raw.dt[, foo(x = get(aggVar[i]), w = get(weightVar[i]), 
-                       FUN = aggMethod[i]), 
-                 by = eval(paste("outCode", ",Year", sep = ""))]
-        setnames(tmp, "V1", aggVar[i])
-        setkeyv(tmp, c("outCode", year))
-      }
-      final = merge(x = final, y = tmp, all.x = TRUE)
-      setTxtProgressBar(pb, i)
+    close(pb)
+    setnames(final, "outCode", outCode)
+    if (keepUnspecified) {
+      cat(paste("\nThe following territories have been aggregated into code = ",
+                unspecifiedCode, ":\n", sep = ""))
+      print(unique(Unspecified))
+    } else{
+      cat("\n")
     }
+    data.frame(final)
   }
-  close(pb)
-  setnames(final, "outCode", outCode)
-  if (keepUnspecified) {
-    cat(paste("\nThe following territories have been aggregated into code = ",
-              unspecifiedCode, ":\n", sep = ""))
-    print(unique(Unspecified))
-  } else{
-    cat("\n")
-  }
-  data.frame(final)
-}
 
 utils::globalVariables(names = c("nc", "Year", "V1"))

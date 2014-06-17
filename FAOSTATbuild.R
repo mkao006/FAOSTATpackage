@@ -186,10 +186,12 @@ roxygenize("FAOSTAT")
 unlink("./FAOSTAT/inst/", recursive = TRUE)
 
 ## Include vignette
-# dir.create("./FAOSTAT/vignettes/")
-dir.create("./FAOSTAT/inst/doc/")
+dir.create("./FAOSTAT/vignettes/")
+# dir.create("./FAOSTAT/inst/doc/")
+# file.copy(from = "./Documentation/FAOSTAT.pdf",
+#           to = "./FAOSTAT/inst/doc/", overwrite = TRUE)
 file.copy(from = "./Documentation/FAOSTAT.pdf",
-          to = "./FAOSTAT/inst/doc/", overwrite = TRUE)
+          to = "./FAOSTAT/vignettes/", overwrite = TRUE)
 
 
 ## Create the vignette hack from (http://yihui.name/knitr/demo/vignette/)
