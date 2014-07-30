@@ -5,7 +5,8 @@
 \usage{
 getFAOtoSYB(name = NULL, domainCode = "RL", elementCode = 5110,
   itemCode = 6621, query, printURL = FALSE, productionDB = FALSE,
-  useCHMT = TRUE, outputFormat = c("wide", "long"), returnFlags = FALSE)
+  useCHMT = TRUE, yearRange = NULL, countrySet = NULL,
+  outputFormat = c("wide", "long"), returnFlags = FALSE)
 }
 \arguments{
 \item{name}{The name to be given to the variable.}
@@ -29,6 +30,10 @@ appied to avoid double counting of China.}
 
 \item{returnFlags,}{Logical, whether the flags should be
 returned. Only work with outputFormat long.}
+
+\item{yearRange}{A numeric vector containing the years to be downloaded.}
+
+\item{countrySet}{The FAOSTAT codes of those countries to be downloaded.}
 }
 \value{
 A list containing the following elements

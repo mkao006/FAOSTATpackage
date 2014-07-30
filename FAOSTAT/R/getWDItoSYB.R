@@ -121,4 +121,4 @@ getWDItoSYB = function(indicator = "SP.POP.0014.TO.ZS", name = NULL,
          metaData = metaData, results = results)
 }
 
-utils::globalVariables(names = "ISO2_WB_CODE")
+utils::globalVariables(names = c("ISO2_WB_CODE", "Year"))

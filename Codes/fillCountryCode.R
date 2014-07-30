@@ -15,7 +15,7 @@ fillCountryCode = function(country, data, outCode = "FAOST_CODE"){
   countryCODE = rep(NA, n)
   for(i in 1:n){
     ind = which(as.matrix(FAOcountryProfile[,
-      c("OFFICIAL_FAO_NAME", "OFFICIAL_WB_NAME", "FAO_TABLE_NAME",
+      c("OFFICIAL_FAO_NAME", "SHORT_NAME", "FAO_TABLE_NAME",
         "UNOFFICIAL1_NAME", "UNOFFICIAL2_NAME", "UNOFFICIAL3_NAME")]) ==
       unqCountry[i], arr.ind = TRUE)
     which.row = ind[, 1]

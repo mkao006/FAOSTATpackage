@@ -15,6 +15,8 @@
 ##' appied to avoid double counting of China.
 ##' @param returnFlags, Logical, whether the flags should be
 ##' returned. Only work with outputFormat long. 
+##' @param yearRange A numeric vector containing the years to be downloaded.
+##' @param countrySet The FAOSTAT codes of those countries to be downloaded.
 ##'
 ##' @return A list containing the following elements
 ##' \describe{
@@ -32,7 +34,7 @@
 
 getFAOtoSYB = function(name = NULL, domainCode = "RL",
     elementCode = 5110, itemCode = 6621, query, printURL = FALSE,
-    productionDB = FALSE, useCHMT = TRUE,
+    productionDB = FALSE, useCHMT = TRUE, yearRange = NULL, countrySet = NULL,
     outputFormat = c("wide", "long"), returnFlags = FALSE){
     outputFormat = match.arg(outputFormat)
     if(returnFlags)
@@ -81,11 +83,13 @@ getFAOtoSYB = function(name = NULL, domainCode = "RL",
                              itemCode = itemCode[i], printURL = printURL,
                              productionDB = productionDB,
                              useCHMT = useCHMT, outputFormat = outputFormat,
-                             returnFlags = returnFlags))
+                             returnFlags = returnFlags,
+                             yearRange = yearRange,
+                             countrySet = countrySet))
             if(!inherits(tmp, "try-error")){
                 ## This was to account sometimes the download is successful, yet
                 ## the data frame is empty
-                if(!empty(tmp)){
+                if(NROW(tmp) != 0){
                     cat("OK\n")
                     results[i, "Success"] = TRUE
                     results[i, "Reason"] = "Download Successful"
@@ -130,4 +134,5 @@ getFAOtoSYB = function(name = NULL, domainCode = "RL",
     list(entity = entity.df, aggregates = region.df, results = results)
 }
 
-utils::globalVariables(names = "FAOST_CODE")
+## The following two variables are hard coded
+utils::globalVariables(names = c("FAOST_CODE", "Year"))

@@ -4,7 +4,7 @@
 \title{This function checks whether there are overlapping between the
 transitional countries.}
 \usage{
-overlap(old, new, var, year = "Year", data)
+overlap(old, new, var, year = "Year", data, take)
 }
 \arguments{
 \item{old}{The FAOST_CODE of the old countries}
@@ -16,6 +16,8 @@ overlap(old, new, var, year = "Year", data)
 \item{year}{The column which index the time.}
 
 \item{data}{The data frame}
+
+\item{take}{The type of check/replacement to be done.}
 }
 \description{
 This function checks whether there are overlapping between the
