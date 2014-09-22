@@ -129,8 +129,10 @@ getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
         faoData$itemCode = itemCode
         faoData$elementCode = elementCode
         faoData$name = name
+        faoData$Value <- as.numeric(gsub("n.a.", "", faoData$Value))
     } else if(outputFormat == "wide"){
         colnames(faoData)[colnames(faoData) == "Value"] = name
+        faoData[, name] <- as.numeric(gsub("n.a.", "", faoData[, name]))
     }
     faoData
 }
