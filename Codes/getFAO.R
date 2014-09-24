@@ -89,7 +89,7 @@ getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
       }
       join = ",JOIN(D.elementcode:E.elementcode)&orderby=E.elementnamee,D.year"
     } else {
-        base = "http://fenix.fao.org/wds/api?"
+        base = c("http://fenix.fao.org/wds/api?", "http://faostat3.fao.org/wds/api?", "http://fenixapps.fao.org/wds/api?")
         database = "db=faostat2&"
         selection = "select=A.AreaCode[FAOST_CODE],D.year[Year],D.value[Value]"
         from = "&from=data[D],element[E],item[I],area[A]&"
@@ -117,7 +117,13 @@ getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
     if(printURL)
         print(url)
 
-    faoData = read.csv(file = url, stringsAsFactors = FALSE)
+    ## Allowing multiple server if any failed.
+    for(i in 1:length(url)){
+        faoData = suppressWarnings(try(read.csv(file = url[i],
+            stringsAsFactors = FALSE), silent = TRUE))
+        if(!inherits(faoData, "try-error"))
+            break
+    }
     faoData$FAOST_CODE = as.integer(faoData$FAOST_CODE)
     faoData$Year = as.integer(faoData$Year)
     ## CHMT
