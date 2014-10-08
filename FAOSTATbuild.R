@@ -37,7 +37,8 @@ save(FAOregionProfile, file = "FAOregionProfile.RData")
 # FAOmetaTable ------------------------------------------------------------
 
 ## Groups
-urlGrp <- "http://fenix.fao.org/wds/rest/groups/faostat2/en"
+# urlGrp <- "http://fenix.fao.org/wds/rest/groups/faostat2/en"
+urlGrp <- "http://fenixapps2.fao.org/wds/rest/groups/faostat2/en"
 ## urlGrp <- "http://faostat3.fao.org/wds/rest/groups/faostat2/en"
 groupCode <- 
   unique(data.frame(groupCode = sapply(fromJSON(urlGrp, encoding = "UTF-8"), 
@@ -49,7 +50,8 @@ groupCode <-
 groupCode <- groupCode[!groupCode[, "groupCode"] %in% c("D", "I", "X"),]
 
 ## Domains
-urlDom <- "http://fenix.fao.org/wds/rest/domains/faostat2/"
+# urlDom <- "http://fenix.fao.org/wds/rest/domains/faostat2/"
+urlDom <- "http://fenixapps2.fao.org/wds/rest/domains/faostat2/"
 ## urlDom <- "http://faostat3.fao.org/wds/rest/domains/faostat2/"
 base <- data.frame()
 for(i in 1:NROW(groupCode)){
@@ -66,7 +68,7 @@ domainCode <- base
 ## Elements
 base <- data.frame()
 for(i in 1:NROW(domainCode)){
-  tmp <- try(fromJSON(paste("http://fenix.fao.org/bletchley/rest/codes/elements/faostat2/",
+  tmp <- try(fromJSON(paste("http://fenixapps2.fao.org/bletchley/rest/codes/elements/faostat2/",
                             domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
   if(!inherits(tmp, "try-error")){
     tmp2 <- unique(data.frame(domainCode = domainCode[i, "domainCode"],
@@ -82,7 +84,7 @@ elemCode <- base
 ## Items
 base <- data.frame()
 for(i in 1:NROW(domainCode)){
-   tmp <- try(fromJSON(paste("http://fenix.fao.org/bletchley/rest/codes/items/faostat2/",
+   tmp <- try(fromJSON(paste("http://fenixapps2.fao.org/bletchley/rest/codes/items/faostat2/",
      domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
      if(!inherits(tmp, "try-error")){
         tmp2 <- unique(data.frame(domainCode = domainCode[i, "domainCode"],
@@ -97,7 +99,7 @@ itemCode <- base
 ## Items aggregated
 base <- data.frame()
 for(i in 1:NROW(domainCode)){
-    tmp <- try(fromJSON(paste("http://fenix.fao.org/bletchley/rest/codes/itemsaggregated/faostat2/",
+    tmp <- try(fromJSON(paste("http://fenixapps2.fao.org/bletchley/rest/codes/itemsaggregated/faostat2/",
       domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
     if(!inherits(tmp, "try-error")){
         tmp2 <- unique(data.frame(domainCode = domainCode[i, "domainCode"],
