@@ -1,5 +1,5 @@
-% \VignetteEngine{knitr::knitr}
-
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Download and harmonize FAOSTAT and WDI data: the FAOSTAT package}
 %% LaTeX packages and LaTeX
 \documentclass[nojss]{jss}
 \usepackage{url}
@@ -54,7 +54,7 @@
 library("knitr")
 opts_chunk$set(fig.path='figure/', fig.align='center', fig.show='hold',
                warning=FALSE, message=FALSE, tidy=FALSE, results='hide',
-               eval=TRUE)
+               eval=FALSE)
 options(replace.assign=TRUE,width=80)
 @
 

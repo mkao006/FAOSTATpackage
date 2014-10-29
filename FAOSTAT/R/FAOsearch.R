@@ -76,3 +76,5 @@ FAOsearch = function(){
     }
          )
 }
+
+utils::globalVariables(names = c("FAOmetaTable"))

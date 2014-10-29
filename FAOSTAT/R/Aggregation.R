@@ -195,4 +195,4 @@ Aggregation =
     data.frame(final)
   }
 
-utils::globalVariables(names = c("nc", "Year", "V1"))
+utils::globalVariables(names = c("nc", "Year", "V1", "FAOcountryProfile"))

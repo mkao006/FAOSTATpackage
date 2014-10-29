@@ -1,5 +1,5 @@
-% \VignetteEngine{knitr::knitr}
-
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Download and harmonize FAOSTAT and WDI data: the FAOSTAT package}
 %% LaTeX packages and LaTeX
 \documentclass[nojss]{jss}\usepackage[]{graphicx}\usepackage[]{color}
 %% maxwidth is the original width if it is less than linewidth
@@ -303,17 +303,6 @@ Nevertheless, often only the name of the country is provided and thus merge is n
 \hlcom{## Countries have not been filled in.}
 \hlkwd{unique}\hlstd{(demoResult[}\hlkwd{is.na}\hlstd{(demoResult}\hlopt{$}\hlstd{ISO2_WB_CODE),} \hlstr{"Country"}\hlstd{])}
 \end{alltt}
-\begin{verbatim}
-##  [1] "China"                     "Congo, Dem. Rep."         
-##  [3] "Congo, Rep."               "Curacao"                  
-##  [5] "Faeroe Islands"            "Hong Kong SAR, China"     
-##  [7] "Korea, Dem. Rep."          "Korea, Rep."              
-##  [9] "Lao PDR"                   "Macao SAR, China"         
-## [11] "Micronesia, Fed. Sts."     "Sint Maarten (Dutch part)"
-## [13] "Slovak Republic"           "St. Martin (French part)" 
-## [15] "Sudan"                     "Virgin Islands (U.S.)"    
-## [17] "West Bank and Gaza"
-\end{verbatim}
 \end{kframe}
 \end{knitrout}
 
@@ -334,41 +323,11 @@ Moreover, the situation is further complicated by disputed territories or econom
 \hlcom{## Countries which are not listed under the ISO2 international standard.}
 \hlstd{FAO.df} \hlkwb{=} \hlkwd{translateCountryCode}\hlstd{(}\hlkwc{data} \hlstd{= FAOchecked.df,} \hlkwc{from} \hlstd{=} \hlstr{"FAOST_CODE"}\hlstd{,}
     \hlkwc{to} \hlstd{=} \hlstr{"ISO2_CODE"}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## 
-## NOTE: Please make sure that the country are matched according to their definition
-\end{verbatim}
 
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: The following entries does not have 'ISO2\_CODE' available}}\begin{verbatim}
-##    FAOST_CODE ISO2_CODE
-## 25         15      <NA>
-## 51        259      <NA>
-## 53        351      <NA>
-## 88         62      <NA>
-##                                           OFFICIAL_FAO_NAME
-## 25                                       Belgium-Luxembourg
-## 51                                          Channel Islands
-## 53 China (China mainland, Hong Kong SAR, Macao SAR, Taiwan)
-## 88                                             Ethiopia PDR
-\end{verbatim}
-\begin{alltt}
 \hlcom{## Countries which are not listed under the UN M49 system.}
 \hlstd{WB.df} \hlkwb{=} \hlkwd{translateCountryCode}\hlstd{(}\hlkwc{data} \hlstd{= WB.lst}\hlopt{$}\hlstd{entity,} \hlkwc{from} \hlstd{=} \hlstr{"ISO2_WB_CODE"}\hlstd{,}
     \hlkwc{to} \hlstd{=} \hlstr{"UN_CODE"}\hlstd{)}
 \end{alltt}
-\begin{verbatim}
-## 
-## NOTE: Please make sure that the country are matched according to their definition
-\end{verbatim}
-
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: The following entries does not have 'UN\_CODE' available}}\begin{verbatim}
-##     ISO2_WB_CODE UN_CODE              OFFICIAL_FAO_NAME
-## 54            CN      NA the People's Republic of China
-## 139           KV      NA                         Kosovo
-\end{verbatim}
 \end{kframe}
 \end{knitrout}
 
@@ -384,13 +343,6 @@ Given the lack of an internationally recognized standard which incorporates all 
 \begin{alltt}
 \hlstd{merged.df} \hlkwb{=} \hlkwd{mergeSYB}\hlstd{(FAOchecked.df, WB.lst}\hlopt{$}\hlstd{entity,} \hlkwc{outCode} \hlstd{=} \hlstr{"FAOST_CODE"}\hlstd{)}
 \end{alltt}
-\begin{verbatim}
-## 
-## NOTE: Please make sure that the country are matched according to their definition
-## 
-## 
-## NOTE: Please make sure that the country are matched according to their definition
-\end{verbatim}
 \end{kframe}
 \end{knitrout}
 

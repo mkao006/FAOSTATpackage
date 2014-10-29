@@ -158,11 +158,13 @@ file.copy(from = "./Documentation/FAOSTAT.pdf",
           to = "./FAOSTAT/inst/doc/", overwrite = TRUE)
 file.copy(from = "./Documentation/FAOSTAT.Rnw",
           to = "./FAOSTAT/vignettes/", overwrite = TRUE)
+file.copy(from = "./Documentation/FAOSTAT.pdf",
+         to = "./FAOSTAT/vignettes/", overwrite = TRUE)
 
 ## Build and check the package
 system("R CMD INSTALL --build FAOSTAT")
 system("R CMD build FAOSTAT")
-system("R CMD check --as-cran FAOSTAT")
+system("R CMD check --as-cran --timings FAOSTAT")
 
 ###########################################################################
 ## End

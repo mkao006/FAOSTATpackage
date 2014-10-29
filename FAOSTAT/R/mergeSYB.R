@@ -39,3 +39,5 @@ mergeSYB = function(x, y, outCode = "FAOST_CODE", all = TRUE, ...){
     ## Merge the translated data
     merge(x = dfx, y = dfy, all = TRUE, ...)
 }
+
+utils::globalVariables(names = c("FAOcountryProfile"))

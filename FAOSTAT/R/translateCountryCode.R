@@ -36,6 +36,8 @@ translateCountryCode = function (data, from, to, oldCode)
     trans.df
 }
 
+utils::globalVariables(names = c("FAOcountryProfile"))
+
 ## translateCountryCode = function(data, from, to, oldCode){
 ##     warning("Please make sure that the country are matched according to their definition")
 ##     if(missing(oldCode))

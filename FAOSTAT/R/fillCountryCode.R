@@ -31,3 +31,5 @@ fillCountryCode = function(country, data, outCode = "FAOST_CODE"){
   colnames(def) = c(country, outCode)
   merge(x = data, y = def, by = country, all.x = TRUE)
 }
+
+utils::globalVariables(names = c("FAOcountryProfile"))
