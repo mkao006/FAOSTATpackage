@@ -46,8 +46,6 @@ groupCode <-
                     groupName = sapply(fromJSON(urlGrp, encoding = "UTF-8"), 
                                        function(x) x[2]),
                     stringsAsFactors = FALSE))
-## Removing "Food security", "Investments", "Emergency response"
-groupCode <- groupCode[!groupCode[, "groupCode"] %in% c("D", "I", "X"),]
 
 ## Domains
 # urlDom <- "http://fenix.fao.org/wds/rest/domains/faostat2/"
@@ -66,27 +64,35 @@ for(i in 1:NROW(groupCode)){
 domainCode <- base
 
 ## Elements
-base <- data.frame()
-for(i in 1:NROW(domainCode)){
-  tmp <- try(fromJSON(paste("http://fenixapps2.fao.org/bletchley/rest/codes/elements/faostat2/",
-                            domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
-  if(!inherits(tmp, "try-error")){
-    tmp2 <- unique(data.frame(domainCode = domainCode[i, "domainCode"],
-                              elementCode = sapply(tmp, function(x) x[1]),
-                              elementName = sapply(tmp, function(x)
-                                paste0(x[2], "(", x[3], ")")),
-                              stringsAsFactors = FALSE))
-    base <- rbind(base, tmp2)
-  }
-}
-elemCode <- base
+# base <- data.frame()
+# for(i in 1:NROW(domainCode)){
+#   tmp <- try(fromJSON(paste("http://faostat3.fao.org/wds/rest/procedures/elements/faostat2/",
+#                             domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
+#   if(!inherits(tmp, "try-error") & length(tmp) != 0){
+#     tmp2 <- unique(data.frame(domainCode = domainCode[i, "domainCode"],
+#                               elementCode = sapply(tmp, function(x) x[1]),
+#                               elementName = sapply(tmp, function(x)
+#                                 paste0(x[2], "(", x[3], ")")),
+#                               stringsAsFactors = FALSE))
+#     base <- rbind(base, tmp2)
+#   }
+# }
+# elemCode <- base
+
+elemCode <- read.csv("./DomainItemElement.csv", header = TRUE)
+elemCode <- unique(elemCode[,c("DomainCode", "ElementCode")])
+elementDescription <- read.csv("./ElementDescription.csv", header = TRUE)
+elementDescription <- elementDescription[, c("ElementCode", "ElementUnitNameE")]
+elemCode <- merge(elemCode, elementDescription, by = "ElementCode", all.x = TRUE)
+colnames(elemCode) <- c("elementCode", "domainCode", "elementName")
+elemCode <- elemCode[, c("domainCode", "elementCode", "elementName")]
 
 ## Items
 base <- data.frame()
 for(i in 1:NROW(domainCode)){
-   tmp <- try(fromJSON(paste("http://fenixapps2.fao.org/bletchley/rest/codes/items/faostat2/",
+   tmp <- try(fromJSON(paste("http://faostat3.fao.org/wds/rest/procedures/items/faostat2/",
      domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
-     if(!inherits(tmp, "try-error")){
+     if(!inherits(tmp, "try-error") & length(tmp) != 0){
         tmp2 <- unique(data.frame(domainCode = domainCode[i, "domainCode"],
                                  itemCode = sapply(tmp, function(x) x[1]),
                                  itemName = sapply(tmp, function(x) x[2]),
@@ -99,9 +105,9 @@ itemCode <- base
 ## Items aggregated
 base <- data.frame()
 for(i in 1:NROW(domainCode)){
-    tmp <- try(fromJSON(paste("http://fenixapps2.fao.org/bletchley/rest/codes/itemsaggregated/faostat2/",
+    tmp <- try(fromJSON(paste("http://faostat3.fao.org/wds/rest/procedures/itemsaggregated/faostat2/",
       domainCode[i, "domainCode"], "/en", sep = ""), encoding = "UTF-8"))
-    if(!inherits(tmp, "try-error")){
+    if(!inherits(tmp, "try-error") & length(tmp) != 0){
         tmp2 <- unique(data.frame(domainCode = domainCode[i, "domainCode"],
                                  itemCode = sapply(tmp, function(x) x[1]),
                                  itemName = sapply(tmp, function(x) x[2]),
