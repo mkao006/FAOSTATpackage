@@ -38,8 +38,8 @@ save(FAOregionProfile, file = "FAOregionProfile.RData")
 
 ## Groups
 # urlGrp <- "http://fenix.fao.org/wds/rest/groups/faostat2/en"
-urlGrp <- "http://fenixapps2.fao.org/wds/rest/groups/faostat2/en"
-## urlGrp <- "http://faostat3.fao.org/wds/rest/groups/faostat2/en"
+# urlGrp <- "http://fenixapps2.fao.org/wds/rest/groups/faostat2/en"
+urlGrp <- "http://faostat3.fao.org/wds/rest/groups/faostat2/en"
 groupCode <- 
   unique(data.frame(groupCode = sapply(fromJSON(urlGrp, encoding = "UTF-8"), 
                                        function(x) x[1]),
@@ -49,8 +49,8 @@ groupCode <-
 
 ## Domains
 # urlDom <- "http://fenix.fao.org/wds/rest/domains/faostat2/"
-urlDom <- "http://fenixapps2.fao.org/wds/rest/domains/faostat2/"
-## urlDom <- "http://faostat3.fao.org/wds/rest/domains/faostat2/"
+# urlDom <- "http://fenixapps2.fao.org/wds/rest/domains/faostat2/"
+urlDom <- "http://faostat3.fao.org/wds/rest/domains/faostat2/"
 base <- data.frame()
 for(i in 1:NROW(groupCode)){
   tmp <- fromJSON(paste(urlDom, groupCode[i, "groupCode"], "/en", sep = ""), 

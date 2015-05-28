@@ -13,7 +13,6 @@
 ##' @param countrySet The FAOSTAT codes of those countries to be downloaded.
 ##' @param query The object created if using the FAOsearch function.
 ##' @param printURL Whether the url link for the data should be printed.
-##' @param productionDB Access to the production database, defaulted to public.
 ##' @param useCHMT logical, whether the CHMT function should be
 ##' applied to avoid double counting of China.
 ##' @param outputFormat The format of the data, can be 'long' or 'wide'.
@@ -30,7 +29,7 @@
 ##'
 
 getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
-    itemCode = 6621, query, printURL = FALSE, productionDB = FALSE,
+    itemCode = 6621, query, printURL = FALSE,
     useCHMT = TRUE, outputFormat = "wide", returnNames = FALSE,
     returnFlags = FALSE, yearRange = NULL, countrySet = NULL){
     
@@ -67,42 +66,20 @@ getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
     if(is.null(name))
         name = paste(domainCode, itemCode, elementCode, sep = "_")
 
-    if(productionDB){
-      ## Base
-#         base = "http://ldvapp07.fao.org:8030/wds/api?"
-#         base = "http://lprapp16.fao.org:4012/wds/api?"
-#         base = "http://lprapp16.fao.org/wds/api?"
-      base = "http://ldvapp07.fao.org:8032/wds/api?"
-      ## Database
-      database = "db=faostatproddiss&"
-      ## Selection
-      selection = "select=D.AreaCode[FAOST_CODE],D.Year[Year],D.Value[Value]"
-      from = "&from=data[D],element[E]&"
-      condition = 
-        paste0("where=D.elementcode(", elementCode, "),D.itemcode(",
-               itemCode, "),D.domaincode('", domainCode, "')")
-      if (!is.null(yearRange)) {
-        condition = paste0(condition, ",D.year(", yearRange, ")")
-      }
-      if (!is.null(countrySet)) {
-        condition = paste0(condition, ",A.AreaCode(", countrySet, ")")
-      }
-      join = ",JOIN(D.elementcode:E.elementcode)&orderby=E.elementnamee,D.year"
-    } else {
-        base = c("http://fenix.fao.org/wds/api?", "http://faostat3.fao.org/wds/api?", "http://fenixapps.fao.org/wds/api?")
-        database = "db=faostat2&"
-        selection = "select=A.AreaCode[FAOST_CODE],D.year[Year],D.value[Value]"
-        from = "&from=data[D],element[E],item[I],area[A]&"
-        condition = paste0("where=D.elementcode(", elementCode, "),D.itemcode(",
-            itemCode, "),D.domaincode('", domainCode, "')")
-        if (!is.null(yearRange)) {
-          condition = paste0(condition, ",D.year(", yearRange, ")")
-        }
-        if (!is.null(countrySet)) {
-          condition = paste0(condition, ",A.AreaCode(", countrySet, ")")
-        }
-        join = ",JOIN(D.elementcode:E.elementcode),JOIN(D.itemcode:I.itemcode),JOIN(D.areacode:A.areacode)&orderby=E.elementnamee,D.year"
+    base = c("http://fenix.fao.org/wds/api?", "http://faostat3.fao.org/wds/api?", "http://fenixapps.fao.org/wds/api?")
+    database = "db=faostat2&"
+    selection = "select=A.AreaCode[FAOST_CODE],D.year[Year],D.value[Value]"
+    from = "&from=data[D],element[E],item[I],area[A]&"
+    condition = paste0("where=D.elementcode(", elementCode, "),D.itemcode(",
+        itemCode, "),D.domaincode('", domainCode, "')")
+    if (!is.null(yearRange)) {
+      condition = paste0(condition, ",D.year(", yearRange, ")")
     }
+    if (!is.null(countrySet)) {
+      condition = paste0(condition, ",A.AreaCode(", countrySet, ")")
+    }
+    join = ",JOIN(D.elementcode:E.elementcode),JOIN(D.itemcode:I.itemcode),JOIN(D.areacode:A.areacode)&orderby=E.elementnamee,D.year"
+
     ## Flags
     if(returnFlags){
         outputFormat = "long"

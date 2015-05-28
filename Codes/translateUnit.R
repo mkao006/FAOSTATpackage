@@ -1,4 +1,4 @@
-##' Function to translate unit
+##' Function to translate multipliers
 ##'
 ##' This function translates number to character name or vice versa
 ##'

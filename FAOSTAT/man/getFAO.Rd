@@ -4,9 +4,9 @@
 \title{Access to FAO FAOSTAT API.}
 \usage{
 getFAO(name = NULL, domainCode = "RL", elementCode = 5110,
-  itemCode = 6621, query, printURL = FALSE, productionDB = FALSE,
-  useCHMT = TRUE, outputFormat = "wide", returnNames = FALSE,
-  returnFlags = FALSE, yearRange = NULL, countrySet = NULL)
+  itemCode = 6621, query, printURL = FALSE, useCHMT = TRUE,
+  outputFormat = "wide", returnNames = FALSE, returnFlags = FALSE,
+  yearRange = NULL, countrySet = NULL)
 }
 \arguments{
 \item{name}{The name to be given to the variable.}
@@ -24,8 +24,6 @@ getFAO(name = NULL, domainCode = "RL", elementCode = 5110,
 \item{query}{The object created if using the FAOsearch function.}
 
 \item{printURL}{Whether the url link for the data should be printed.}
-
-\item{productionDB}{Access to the production database, defaulted to public.}
 
 \item{useCHMT}{logical, whether the CHMT function should be
 applied to avoid double counting of China.}

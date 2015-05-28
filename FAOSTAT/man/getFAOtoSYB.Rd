@@ -4,9 +4,9 @@
 \title{Access to FAO FAOSTAT API}
 \usage{
 getFAOtoSYB(name = NULL, domainCode = "RL", elementCode = 5110,
-  itemCode = 6621, query, printURL = FALSE, productionDB = FALSE,
-  useCHMT = TRUE, yearRange = NULL, countrySet = NULL,
-  outputFormat = c("wide", "long"), returnFlags = FALSE)
+  itemCode = 6621, query, printURL = FALSE, useCHMT = TRUE,
+  yearRange = NULL, countrySet = NULL, outputFormat = c("wide", "long"),
+  returnFlags = FALSE)
 }
 \arguments{
 \item{name}{The name to be given to the variable.}
@@ -20,8 +20,6 @@ getFAOtoSYB(name = NULL, domainCode = "RL", elementCode = 5110,
 \item{query}{The object created if using the FAOsearch function}
 
 \item{printURL}{Whether the url link for the data should be printed}
-
-\item{productionDB}{Use the production data base}
 
 \item{useCHMT}{logical, whether the CHMT function should be}
 

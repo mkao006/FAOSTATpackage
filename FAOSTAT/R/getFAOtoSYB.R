@@ -9,7 +9,6 @@
 ##' @param itemCode The item code of the variable, see details.
 ##' @param query The object created if using the FAOsearch function
 ##' @param printURL Whether the url link for the data should be printed
-##' @param productionDB Use the production data base
 ##' @param useCHMT logical, whether the CHMT function should be
 ##' @param outputFormat The format of the data, can be 'long' or 'wide'.
 ##' appied to avoid double counting of China.
@@ -34,7 +33,7 @@
 
 getFAOtoSYB = function(name = NULL, domainCode = "RL",
     elementCode = 5110, itemCode = 6621, query, printURL = FALSE,
-    productionDB = FALSE, useCHMT = TRUE, yearRange = NULL, countrySet = NULL,
+    useCHMT = TRUE, yearRange = NULL, countrySet = NULL,
     outputFormat = c("wide", "long"), returnFlags = FALSE){
     outputFormat = match.arg(outputFormat)
     if(returnFlags)
@@ -81,7 +80,6 @@ getFAOtoSYB = function(name = NULL, domainCode = "RL",
                              domainCode = domainCode[i],
                              elementCode = elementCode[i],
                              itemCode = itemCode[i], printURL = printURL,
-                             productionDB = productionDB,
                              useCHMT = useCHMT, outputFormat = outputFormat,
                              returnFlags = returnFlags,
                              yearRange = yearRange,
