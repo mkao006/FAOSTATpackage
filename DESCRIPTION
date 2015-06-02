@@ -1,14 +1,11 @@
 Package: FAOSTAT
 Type: Package
-Title: A complementary package to the FAOSTAT database and the Statistical
-    Yearbook of the Food and Agricultural Organization of the United Nations.
+Title: Download Data from the FAOSTAT Database of the Food and Agricultural Organization (FAO) of the United Nations
 Version: 2.0
-Date: 2014-07-08
+Date: 2015-05-28
 Author: Michael C. J. Kao <michael.kao@fao.org>, Markus Gesmann, Filippo Gheri
 Maintainer: Filippo Gheri <filippo.gheri@fao.org>
-Description: The package hosts a list of functions to automatically download statistics
-    from FAOSTAT (database of the Food and Agricultural Organization of the United Nations) 
-    and WDI (database of the World Bank), and to perform some harmonization operations.
+Description: A list of functions to download statistics from FAOSTAT (database of the Food and Agricultural Organization of the United Nations) and WDI (database of the World Bank), and to perform some harmonization operations.
 URL: https://github.com/mkao006/FAOSTATpackage
 Imports:
     RJSONIO (>= 0.96-0),
