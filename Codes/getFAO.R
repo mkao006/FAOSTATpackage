@@ -66,8 +66,8 @@ getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
     if(is.null(name))
         name = paste(domainCode, itemCode, elementCode, sep = "_")
 
-    base = c("http://fenix.fao.org/wds/api?", "http://faostat3.fao.org/wds/api?", "http://fenixapps.fao.org/wds/api?")
-    database = "db=faostat2&"
+    base = c("http://faostat3.fao.org/wds-r/api?")
+    database = "db=faostat4&"
     selection = "select=A.AreaCode[FAOST_CODE],D.year[Year],D.value[Value]"
     from = "&from=data[D],element[E],item[I],area[A]&"
     condition = paste0("where=D.elementcode(", elementCode, "),D.itemcode(",
