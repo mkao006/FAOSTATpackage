@@ -14,6 +14,8 @@
 translateCountryCode = function (data, from, to, oldCode)
 {
     cat("\nNOTE: Please make sure that the country are matched according to their definition\n\n")
+    if(is(data, "data.table"))
+        data = data.frame(data)
     if (missing(oldCode))
         oldCode = from
     if (from != to) {
