@@ -19,4 +19,5 @@ License: GPL (>= 2)
 LazyData: yes
 ZipData: no
 VignetteBuilder: knitr
-Suggests: knitr
+Suggests: knitr,
+    testthat
