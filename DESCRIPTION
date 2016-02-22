@@ -1,8 +1,8 @@
 Package: FAOSTAT
 Type: Package
 Title: Download Data from the FAOSTAT Database of the Food and Agricultural Organization (FAO) of the United Nations
-Version: 2.0
-Date: 2015-05-28
+Version: 2.1.0
+Date: 2016-02-22
 Author: Michael C. J. Kao <michael.kao@fao.org>, Markus Gesmann, Filippo Gheri
 Maintainer: Filippo Gheri <filippo.gheri@fao.org>
 Description: A list of functions to download statistics from FAOSTAT (database of the Food and Agricultural Organization of the United Nations) and WDI (database of the World Bank), and to perform some harmonization operations.
