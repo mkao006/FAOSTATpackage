@@ -130,8 +130,8 @@ if(file.exists("./FAOSTAT"))
     unlink("FAOSTAT", recursive = TRUE)
 
 ## Build the package
-package.skeleton("FAOSTAT", code_files = paste("./Codes/",
-                           dir("./Codes/", pattern = "\\.R$"), sep = ""),
+package.skeleton("FAOSTAT", code_files = paste("./Codes/R",
+                                               dir("./Codes/R", pattern = "\\.R$"), sep = ""),
                  force = FALSE)
 
 ## Include the data
@@ -152,6 +152,10 @@ file.copy(from = "./FAOSTATdemo.R",
           to = "FAOSTAT/demo/", overwrite = TRUE)
 cat("FAOSTATdemo      Demonstration for the FAOSTAT package\n",
     file = "FAOSTAT/demo/00Index")
+
+## Include tests
+dir.create("FAOSTAT/tests")
+file.copy("Codes/tests", "FAOSTAT", recursive = TRUE)
 
 ## Use roxygen to build the documentation
 roxygenize("FAOSTAT")
