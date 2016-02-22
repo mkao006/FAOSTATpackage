@@ -17,6 +17,5 @@
 ##' @import classInt
 ##' @import ggplot2
 ##' @import labeling
-##' @import scales
 ##'
 NULL

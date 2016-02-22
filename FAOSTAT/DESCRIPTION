@@ -1,14 +1,11 @@
 Package: FAOSTAT
 Type: Package
-Title: Download Data from the FAOSTAT Database of the Food and Agricultural
-    Organization (FAO) of the United Nations
+Title: Download Data from the FAOSTAT Database of the Food and Agricultural Organization (FAO) of the United Nations
 Version: 2.0
 Date: 2015-05-28
 Author: Michael C. J. Kao <michael.kao@fao.org>, Markus Gesmann, Filippo Gheri
 Maintainer: Filippo Gheri <filippo.gheri@fao.org>
-Description: A list of functions to download statistics from FAOSTAT (database
-    of the Food and Agricultural Organization of the United Nations) and WDI
-    (database of the World Bank), and to perform some harmonization operations.
+Description: A list of functions to download statistics from FAOSTAT (database of the Food and Agricultural Organization of the United Nations) and WDI (database of the World Bank), and to perform some harmonization operations.
 URL: https://github.com/mkao006/FAOSTATpackage
 Imports:
     RJSONIO (>= 0.96-0),
@@ -17,12 +14,9 @@ Imports:
     MASS (>= 7.3-22),
     classInt (>= 0.1-19),
     ggplot2 (>= 0.9.3),
-    labeling (>= 0.1),
-    scales (>= 0.2.3)
+    labeling (>= 0.1)
 License: GPL (>= 2)
 LazyData: yes
 ZipData: no
 VignetteBuilder: knitr
-Suggests:
-    knitr,
-    testthat
+Suggests: knitr
