@@ -130,8 +130,9 @@ if(file.exists("./FAOSTAT"))
     unlink("FAOSTAT", recursive = TRUE)
 
 ## Build the package
-package.skeleton("FAOSTAT", code_files = paste("./Codes/R",
-                                               dir("./Codes/R", pattern = "\\.R$"), sep = ""),
+package.skeleton("FAOSTAT", code_files = paste("./Codes/R/",
+                                               dir("./Codes/R/",
+                                                   pattern = "\\.R$"), sep = ""),
                  force = FALSE)
 
 ## Include the data
