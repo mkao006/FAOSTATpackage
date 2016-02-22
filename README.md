@@ -1,6 +1,7 @@
 FAOSTAT
 =======
-
+[![travis-ci-build-status]](https://travis-ci.org/mkao006/FAOSTATpackage.svg?branch=master)(https://travis-ci.org/mkao006/FAOSTATpackage)
+[![codecov.io](https://codecov.io/github/mkao006/FAOSTATpackage/coverage.svg?branch=master)](https://codecov.io/github/mkao006/FAOSTATpackage?branch=master)
 
 This repository contains all the files to build the FAOSTAT package.
 
