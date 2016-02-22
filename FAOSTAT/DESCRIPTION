@@ -24,4 +24,5 @@ LazyData: yes
 ZipData: no
 VignetteBuilder: knitr
 Suggests:
-    knitr
+    knitr,
+    testthat
