@@ -44,7 +44,7 @@ getFAO = function(name = NULL, domainCode = "RL", elementCode = 5110,
     ## Country set
     if (!is.null(countrySet)) {
       if (!is.numeric(countrySet)) {
-        stop("Please, provide a numeric vector for the year range.")
+        stop("Please, provide a numeric vector for countrySet.")
       } else {
         countrySet = paste(countrySet, collapse = ":")
       }
