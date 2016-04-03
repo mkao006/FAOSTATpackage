@@ -20,7 +20,7 @@ version can be installed by specifying the **ref** argument.
 
 ```r
 library(devtools)
-install_github(repo = "FAOSTATpackage", username = "mkao006", subdir = "FAOSTAT")
+install_github(repo = "mkao006/FAOSTATpackage", subdir = "FAOSTAT")
 ```
 
 Vignettes and demos are available and please make use of them:
