@@ -21,3 +21,4 @@ ZipData: no
 VignetteBuilder: knitr
 Suggests: knitr,
     testthat
+RoxygenNote: 7.0.2
