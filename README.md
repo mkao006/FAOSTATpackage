@@ -7,7 +7,7 @@ FAOSTAT
 
 This repository contains all the files to build the FAOSTAT package.
 
-# NOTE: This package has been orphaned due to the current re-development of the FAOSTAT API and the fact that I no longer work for the organisation and has no access to the updates.
+# NOTE: This package has changed maintainer and is now hosted on GitLab: [paulrougieux/faostatpackage](https://gitlab.com/paulrougieux/faostatpackage/)
 
 ==============================================================================
 
